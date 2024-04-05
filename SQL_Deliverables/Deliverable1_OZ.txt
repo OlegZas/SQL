@@ -1,3 +1,5 @@
+
+-- 4/2/24
 USE Graduation_Rate;
 SELECT * FROM graduation_rate_table;
 -- ***********************************

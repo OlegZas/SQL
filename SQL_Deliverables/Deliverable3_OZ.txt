@@ -1,6 +1,6 @@
 USE Graduation_Rate;
 SELECT * FROM graduation_rate_table;
-
+-- 4/2/24
 -- *****************************************************************************
 -- 1.	Calculate the percentage of records where the years to graduate is more than 4 and the high school GPA is below the average high school GPA.
 -- percent function where years > 4 AND gpa < (select avg(gp) from) 
