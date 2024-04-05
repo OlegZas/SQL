@@ -1,0 +1,173 @@
+USE Graduation_Rate;
+SELECT * FROM graduation_rate_table;
+-- ***********************************
+/* just practice, Davi's question: 
+select `ACT composite score` as act, `parental level of education` as p, count(1) as c
+from `graduation_rate_table`
+group by act,p
+having c>1; */
+-- ***************************** QUERIES *****************************************************
+-- 1.	Retrieve the number of records where the SAT total score is above the average SAT total score.
+-- breaking up: 1. count all 2. get avg sat 3. where above avg sat 
+
+-- Mehtod 1: subquery 
+SELECT COUNT(*) AS `Number of Records w SAT > AVG`
+FROM `graduation_rate_table`
+where `SAT total score` > (select AVG(`SAT total score`) FROM `graduation_rate_table`);
+-- solved without outside recources, but took longer and i need more practice (but im getting there): goal to be able to answer quickly at the interview 
+-- ------------- Method 2: CTE 
+-- --------------------------------Review this **** reviewed 4/3/24
+With average AS (
+	SELECT AVG( `SAT total score`) AS avg_sat
+    FROM `graduation_rate_table`
+    )
+SELECT COUNT(*)
+FROM `graduation_rate_table` G
+JOIN average ON `SAT total score` > avg_sat;  -- i am joining G with average tables based on conditon that sat column > avg_sat column in CTE
+-- ********************************************************************************************************************************************************
+-- ******************************************************* CREATING SOME VIEWS TO AVOID COPYING LONG COLUMN NAMES ALL THE TIME ****************************
+-- ********************************************************************************************************************************************************
+/*
+CREATE VIEW students AS 
+select * 
+FROM `graduation_rate_table`; */
+-- 12:20:06	CREATE VIEW students AS  select *  FROM `graduation_rate_table`	Error Code: 1142. CREATE VIEW command denied to user 'CLP_SQL_Tasks'@'75.224.164.74' for table 'students'	0.078 sec
+-- ***********************************************************************************************************************************************************
+-- 2.	Calculate the average college GPA for each level of parental education.
+-- group by, avg gpa
+SELECT LOWER(`parental level of education`) AS EducationLevel, ROUND(AVG(`college gpa`),2) as Average_College_GPA -- rounding to make it look cleaner; ALSO standardized all names by lowercase funciton 
+FROM `graduation_rate_table`
+GROUP BY EducationLevel;
+-- Ordering based on parental levels of education  
+SELECT CONCAT(upper(SUBSTRING(`parental level of education`,1,1)),LOWER(SUBSTRING(`parental level of education`,2))) AS EducationLevel, ROUND(AVG(`college gpa`),2) -- rounded and standardized to SentanceCase. 
+-- looked up substring function.. need more practice with it
+FROM `graduation_rate_table`
+GROUP BY EducationLevel
+ORDER BY 
+	CASE 
+		WHEN `parental level of education` = 'associate''s degree' THEN 4 -- NOTE: for text with spaces still use ''... for apostrophe use '' instead of '
+        WHEN `parental level of education` = 'bachelor''s degree' THEN 5
+        WHEN `parental level of education` = 'high school' THEN 2
+        WHEN `parental level of education` = 'master''s degree' THEN 6
+        WHEN `parental level of education` = 'some college' THEN 3
+        ELSE 1
+	END;
+
+-- 3.	Retrieve the records where high school GPA is above the average high school GPA and years to graduate is less than or equal to 4.
+-- GPA > (SUBQUERY AVG GPA) and years < 4 
+SELECT * 
+FROM `graduation_rate_table`
+WHERE `high school gpa` > (SELECT AVG(`high school gpa`) FROM `graduation_rate_table`) AND `years to graduate` <= 4;
+
+-- 4.	Calculate the average SAT total score for each distinct level of parental education.
+SELECT `parental level of education`, AVG(`SAT total score`) AS Average_Score
+FROM `graduation_rate_table`
+GROUP BY `parental level of education`;
+-- ---------------- ORDERED AND ROUNDED 
+ SELECT `parental level of education`, ROUND(AVG(`SAT total score`),1) AS Average_Score
+FROM `graduation_rate_table`
+GROUP BY `parental level of education`
+ORDER BY 
+		CASE 
+		WHEN `parental level of education` = 'associate''s degree' THEN 4 
+        WHEN `parental level of education` = 'bachelor''s degree' THEN 5
+        WHEN `parental level of education` = 'high school' THEN 2
+        WHEN `parental level of education` = 'master''s degree' THEN 6
+        WHEN `parental level of education` = 'some college' THEN 3
+        ELSE 1
+	END DESC; -- descending order 
+    
+-- 5.	Retrieve the records where the ACT composite score is above the average ACT composite score and parental income is above a certain threshold (e.g., $75,000).
+-- act > (subquery avg ) AND income > 75k 
+SELECT * 
+FROM `graduation_rate_table`
+WHERE `ACT composite score` > (SELECT AVG(`ACT composite score`) FROM `graduation_rate_table`) AND  `parental income` > 105000; -- doind above 105k instead 
+-- -------------------------- GRouped by parental level of education and parental income above 75k 
+-- note: when grouping and selecting all columns the results will be meaningless because arbitrary number (random from each column) will be selected; therefore you must 
+-- use AGGREGATE FUNCTIONS in select statetmnet when grouping 
+SELECT  `parental level of education`, AVG(`ACT composite score`), AVG(`SAT total score`), SUM(`parental income`), ROUND(AVG(`college gpa`),1)
+FROM `graduation_rate_table`
+WHERE `ACT composite score` > (SELECT AVG(`ACT composite score`) FROM `graduation_rate_table`) AND  `parental income` > 75000 
+group by `parental level of education`
+ORDER BY AVG(`ACT composite score`) + AVG(`SAT total score`); -- just practicing 
+
+-- 6.	Calculate the average college GPA for each distinct level of parental education, ordered by the average GPA in descending order.
+-- avg gpa grouped by levels and ordered by average 
+SELECT CONCAT(UPPER(SUBSTRING(`parental level of education`,1,1)), LOWER(SUBSTRING(`parental level of education`,2))) AS Education_Level, ROUND(AVG(`college gpa`),2) AS Average_GPA
+-- practicing concat and substring STRING FUNCTIONS 
+FROM `graduation_rate_table`
+GROUP BY  `parental level of education`
+ORDER BY Average_GPA desc;
+-- ---------------------------- Ask how to capitalize each word, if too complex then skip
+
+-- 7.	Retrieve the records where years to graduate is greater than the average years to graduate and high school GPA is below the average high school GPA.
+-- get all where years to grad > (subquery: avg(year grad)) AND gpa < (subquery:avg gpa))
+		-- check maybe can use cte isntead -- do cte in select statetment 
+SELECT * 
+FROM `graduation_rate_table`
+WHERE `years to graduate` > (SELECT AVG(`years to graduate`) FROM `graduation_rate_table`) 
+	AND 
+    `high school gpa` < (SELECT AVG(`high school gpa`)  FROM `graduation_rate_table`) ;
+ -- --------------------------------- method 2: More complex with the use of CTE (creating cte and then joining it to the original table) 
+ -- PRACTICE THIS METHOD MORE 
+WITH averages AS (
+	SELECT 
+		AVG(`years to graduate`) AVY,
+		AVG(`high school gpa`) AVGP
+    FROM `graduation_rate_table`)
+
+SELECT G1.*, A.*  -- listing all the averages as well here just to practice 
+FROM `graduation_rate_table` G1
+INNER JOIN averages A 
+	ON 
+    G1.`years to graduate` > A.AVY 
+    AND
+    G1.`high school gpa` < A.AVGP;
+ 
+
+-- 8.	Calculate the average college GPA for each distinct level of parental education, sorted by the average GPA in descending order.
+-- group avg(gpa) by parental and sort by avg(gpa) in desc 
+-- Method 1: 
+SELECT LOWER(`parental level of education`) as EDUCATION_LEVEL, ROUND(AVG(`college gpa`),2) AS AVG_COLLEGE_GPA
+FROM `graduation_rate_table`
+GROUP BY EDUCATION_LEVEL
+ORDER BY AVG_COLLEGE_GPA DESC;
+-- ----------------- METHOD 2: CTE 
+WITH averages AS (
+SELECT 
+	LOWER(`parental level of education`) as EDUCATION_LEVEL,
+	ROUND(AVG(`college gpa`),2) AS AVG_COLLEGE_GPA
+    FROM `graduation_rate_table` 
+    GROUP BY EDUCATION_LEVEL
+	ORDER BY AVG_COLLEGE_GPA DESC
+)
+SELECT * 
+FROM averages; 
+
+-- 9.	Retrieve the records where the SAT total score is within a specific range (e.g., between 1200 and 1400).
+SELECT * 
+FROM `graduation_rate_table`  
+WHERE `SAT total score` BETWEEN 2350 AND 2360;
+
+-- 10.	Calculate the average ACT composite score for each distinct level of parental education, only including records with a high school GPA above a certain threshold (e.g., 3.0).
+SELECT `parental level of education` , AVG(`ACT composite score`)
+FROM `graduation_rate_table`  
+WHERE `high school gpa` > 3
+GROUP BY `parental level of education` -- cannot use HAVING with non-agregated columns so HAVING `high school gpa` > 3 would lead to an error 
+;
+-- ------------------------ METHOD 2: USING CTE
+WITH gpa_filter AS (
+SELECT *
+FROM `graduation_rate_table`
+WHERE `high school gpa` > 3)
+SELECT `parental level of education` , AVG(`ACT composite score`)
+FROM gpa_filter
+GROUP BY  `parental level of education`;
+-- ------------------------- Method 3: derived table 
+SELECT education , ROUND(AVG(ACT),2) as avg_act
+From (select `parental level of education` as education , `ACT composite score` as ACT
+		FROM `graduation_rate_table`
+		WHERE `high school gpa` > 3) AS gpa_filter -- derived table 
+GROUP BY  education
+order by avg_act ;
+

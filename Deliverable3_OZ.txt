@@ -1,0 +1,208 @@
+USE Graduation_Rate;
+SELECT * FROM graduation_rate_table;
+
+-- *****************************************************************************
+-- 1.	Calculate the percentage of records where the years to graduate is more than 4 and the high school GPA is below the average high school GPA.
+-- percent function where years > 4 AND gpa < (select avg(gp) from) 
+-- can get years > 4 / count(total years)
+-- to get percent: count filtered : count total records 
+
+select round((select count(1) FROM `graduation_rate_table` g -- 1 vs *, 1 selects one for each row, while * will select every column in each row; for counting rows can use 1 instead of * 
+			where `years to graduate` > 4 AND `high school gpa` < (Select avg(`high school gpa`) FROM `graduation_rate_table` g1) ) / count(*),3) as Percentage -- counting filtered records and dividing by total count 
+FROM `graduation_rate_table` g;
+-- where `years to graduate` > 4 AND `high school gpa` < (Select avg(`high school gpa`) FROM `graduation_rate_table` g1);
+
+-- Method 2. Rewriting above to make it cleaner: 
+-- ---------------------------------------------------REVIEW THIS ONE 
+WITH FilteredRecords AS (
+    SELECT COUNT(1) AS filtered_count
+    FROM `graduation_rate_table` g
+    WHERE `years to graduate` > 4 
+    AND `high school gpa` < (SELECT AVG(`high school gpa`) FROM `graduation_rate_table` g1)
+)
+SELECT ROUND((filtered_count / (SELECT COUNT(*) FROM `graduation_rate_table`)) * 100, 3) AS Percentage
+FROM FilteredRecords;
+
+
+
+-- this does not asnwer the question above
+select ROUND(`years to graduate`/ count(*),2) as PERCENTAGE_OF_RECORDS  -- THIS CALCULATES AVERAGE NUMBER OF YEARS TO GRADUATE, NOT THE PERCENTAGE OF RECORDS 
+from `graduation_rate_table`
+ where `years to graduate` > 4  
+	AND
+	`high school gpa` < (SELECT AVG(`high school gpa`) from `graduation_rate_table`) ; 
+
+-- 2.	Retrieve the top 5 records with the highest college GPA.
+SELECT *
+FROM `graduation_rate_table`
+ORDER BY `college gpa`DESC
+LIMIT 5;
+
+-- METHOD 2: window function rank 
+select *, dense_rank () over (order by `college gpa`DESC) as gpa_rank
+FROM `graduation_rate_table`
+limit 5;
+-- METHOD 3: CTE WITH ROW_NUMBER *************************************REVIEW (redo)
+with ranked as (
+	select *, row_number () over (order by `college gpa`DESC) as gpa_rank
+    FROM `graduation_rate_table`
+	limit 5
+)
+select * 
+from ranked; 
+-- METHOD 4: SUBQUERY WITH 'in'  ***************************************REVIEW (redo)
+-- this version of mysql doesnt support limit inside IN subqery, hence i had to place it outside 
+/*
+Select *
+FROM `graduation_rate_table`
+where `college gpa`IN (
+		SELECT `college gpa`
+        FROM `graduation_rate_table`
+		ORDER BY `college gpa`DESC
+		LIMIT 5
+         -- this version of mysql doesnt support limit inside IN subqery, hence i had to place it outside 
+		);*/
+-- *************************************************************************************************
+-- 3.	Calculate the median SAT total score. ------- review and break it apart 
+--  rank them all and then get average - nope, average will differ 
+-- check percentile functions 
+-- 1. order 2. count 3. determine middle value middle or average 
+-- --------------------------------------- this is from chatgpt 
+
+SELECT AVG(`SAT total score`) AS median
+FROM (
+        SELECT `SAT total score`,
+               ROW_NUMBER() OVER (ORDER BY `SAT total score`) AS row_numbers,
+               COUNT(*) OVER () AS total_rows
+        FROM `graduation_rate_table`) ranked
+WHERE row_numbers BETWEEN FLOOR((total_rows + 1) / 2) AND CEIL((total_rows + 1) / 2)
+;
+
+/*
+-- percentile_cont NOT SUPPORTED IN MYSQL ANYMORE, ALTHOUGH THIS WOULD BE A SOLUTION. 
+select percentile_cont(0.5) WITHIN GROUP (order by s) OVER () as Median
+from (select `SAT total score` as s
+		FROM `graduation_rate_table`)as derived;
+*/
+
+-- *************************************************************************************************
+-- 4.	Retrieve the records where the years to graduate is the highest among all records.
+-- * where years to grad is max 
+-- Method 1 Subquery in the where clause 
+SELECT  *
+FROM `graduation_rate_table`
+where `years to graduate` = (select max(`years to graduate`) FROM `graduation_rate_table` );
+
+-- Method 2: CTE with Join -- this one would be good for the interview with both cte and join in use 
+
+with maxGrad as (
+	select  max(`years to graduate`) as max_y
+    FROM `graduation_rate_table`)
+select * 
+FROM `graduation_rate_table` g
+join maxGrad m ON g.`years to graduate` = m.max_y;
+-- Method 4: without window/aggregate functions, just by limiting; it is sort of a work around, so not the best solution. 
+with limiting as (SELECT `years to graduate` 
+					FROM `graduation_rate_table`
+					ORDER BY `years to graduate` DESC
+					LIMIT 1)
+select * 
+FROM `graduation_rate_table` g
+inner join limiting l on g.`years to graduate` = l.`years to graduate`; 
+
+-- *************************************************************************************************
+-- 5.	Calculate the average high school GPA for records where the parental level of education is "Bachelor's Degree" and the parental income is above a certain threshold (e.g., $60,000).
+-- avg gpa where parentEDucation IS IN "Bachelors" AND Income > 100
+-- Method 1: aggregate function and where filters 
+Select AVG(`high school gpa`) AS Avg_Hgpa_For_Filtered_Records
+FROM `graduation_rate_table` g
+WHERE `parental level of education` = 'bachelor''s degree' AND `parental income` > 60000
+;
+-- ------ Return the records with all columns and average gpa column 
+Select *, (select AVG(`high school gpa`) FROM `graduation_rate_table` g) as avg_gpa  -- to list a column with the average gpa in each row use SUBQUERY HERE 
+FROM `graduation_rate_table` g
+WHERE `parental level of education` = 'bachelor''s degree' AND `parental income` > 60000
+;
+-- Method 2: IN(
+Select AVG(`high school gpa`) AS Avg_Hgpa_For_Filtered_Records
+FROM `graduation_rate_table` g
+WHERE `parental level of education` IN ('bachelor''s degree') AND `parental income` > 60000; -- 'IN' is not optimal here, since it's slower the = and is typically used for comparison of single value with multiple values ( single = single vs single IN(xx, xxx,xxx) 
+
+-- Method 3: Derived Table and CTE .. REVIEW this 
+Select AVG(`high school gpa`) AS Avg_Hgpa_For_Filtered_Records
+FROM (
+		Select `high school gpa`
+        FROM `graduation_rate_table` g
+		WHERE `parental level of education` = 'bachelor''s degree' AND `parental income` > 60000) as filters ;
+-- CTE
+WITH filters AS (
+		Select `high school gpa`
+        FROM `graduation_rate_table` g
+		WHERE `parental level of education` = 'bachelor''s degree' AND `parental income` > 60000)
+Select AVG(`high school gpa`) AS Avg_Hgpa_For_Filtered_Records
+FROM filters ;
+
+-- *************************************************************************************************
+-- 6.	Retrieve the records where the ACT composite score is above the average ACT composite score and the years to graduate is less than the average years to graduate.
+-- all records where ACT > avg(ACT) AND yearstograd < avg(years to grad)
+-- Method 1: where and subqueries 
+SELECT * 
+FROM `graduation_rate_table` g
+ WHERE `ACT composite score` > (Select AVG(`ACT composite score`)
+									FROM `graduation_rate_table` g1)
+		AND 
+        `years to graduate` < (Select AVG(`years to graduate`)
+									FROM `graduation_rate_table` g1)
+                                    ;
+ -- Method 2: where and CTE and join
+WITH av AS (Select AVG(`ACT composite score`) as avgACT
+									FROM `graduation_rate_table` g1),
+yTg AS (Select AVG(`years to graduate`) as avgGrad
+									FROM `graduation_rate_table` g1)
+ SELECT * 
+FROM `graduation_rate_table` g
+JOIN av a ON g.`ACT composite score` > a.avgACT 
+JOIN yTg y ON g.`years to graduate` < y.avgGrad; 
+
+-- *************************************************************************************************
+-- 7.	Calculate the percentage of records where the college GPA is above a certain threshold (e.g., 3.5) and the high school GPA is below the average high school GPA.
+-- percentage... count where gpa > x AND hGpa < avg(hGpa)
+-- first doing the second part then will do percentage 
+
+select round((((select count(1) 
+				FROM `graduation_rate_table` a 
+                where `college gpa` > 3.5 
+                AND `high school gpa` < 
+								(select avg(`high school gpa`) 
+                                FROM `graduation_rate_table` b )) 
+					/ count(1))*100),2) as percentage 
+FROM `graduation_rate_table` g;
+
+-- ************************************************************************************************************
+-- 8.	Retrieve the records where the parental income is within a specific range (e.g., between $40,000 and $60,000) and the high school GPA is above the average high school GPA.
+-- get * where income between xx and xx AND gpa > avg(highschool_gpa)
+SELECT *
+FROM `graduation_rate_table` g
+WHERE `parental income` 
+				BETWEEN 50000 
+                AND 60000 
+                AND `high school gpa` > (SELECT AVG
+										(`high school gpa`) FROM `graduation_rate_table` g);
+-- Method 2: CTE and JOIN 
+WITH avgGPA AS (
+    SELECT AVG(`high school gpa`) AS avg_gpa
+    FROM `graduation_rate_table`
+)
+SELECT g.*
+FROM `graduation_rate_table` g
+JOIN avgGPA a ON g.`high school gpa` > a.avg_gpa
+WHERE g.`parental income` BETWEEN 50000 AND 60000;
+
+
+-- ------
+-- duplicate records from employee 
+-- without using the primary key 
+select `SAT total score`, count(1)
+	FROM `graduation_rate_table`
+	group by `SAT total score`
+	having count(*) > 1
