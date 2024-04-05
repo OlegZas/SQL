@@ -1,0 +1,501 @@
+"ACT composite score";"SAT total score";"parental level of education";"parental income";"high school gpa";"college gpa";"years to graduate"
+22;1625;"high school";40999;3;3.1;7
+29;2090;"associate's degree";75817;4;3.4;5
+30;2188;"bachelor's degree";82888;4;3.9;3
+33;2151;"associate's degree";93518;4;3.7;5
+29;2050;"associate's degree";79153;4;3.4;6
+28;1976;"master's degree";100048;4;3.5;4
+29;2097;"some college";46883;4;3.4;6
+30;1976;"some college";67379;4;3.4;5
+27;2072;"bachelor's degree";102424;4;3.9;4
+32;2246;"bachelor's degree";56793;4;3.6;3
+28;1956;"associate's degree";66110;4;3.4;5
+28;2006;"some high school";56590;4;3.1;5
+25;1868;"bachelor's degree";87574;3;3.1;5
+27;1955;"some college";75111;3;3.3;6
+27;1873;"bachelor's degree";93342;4;3.7;3
+31;2029;"high school";47947;4;3.7;4
+25;1779;"associate's degree";77493;3;3.3;7
+31;2110;"some college";65866;4;3.5;4
+27;1996;"high school";45824;4;3.1;6
+31;2156;"bachelor's degree";74254;4;3.4;6
+33;2234;"high school";71657;4;3.9;3
+24;1824;"associate's degree";72319;3;3.2;6
+26;1810;"some college";81527;3;3.2;5
+26;1914;"some college";64410;4;3.5;3
+25;1866;"some college";63514;3;3.4;7
+28;1928;"high school";54938;4;3.3;4
+25;1842;"high school";72810;3;3.3;4
+26;1846;"associate's degree";77274;4;3.3;4
+24;1800;"some high school";62857;3;3.2;4
+28;1952;"bachelor's degree";59674;4;3.1;4
+30;2080;"master's degree";96140;4;3.9;4
+26;1784;"some college";68573;3;3.3;4
+29;1913;"some college";75011;4;3.3;4
+31;2101;"master's degree";75001;4;3.6;4
+31;2028;"high school";55451;4;3.2;5
+24;1707;"some college";65352;3;2.9;5
+27;1951;"associate's degree";51677;4;3.2;4
+28;2042;"some college";79886;4;3.3;4
+28;1898;"high school";54004;4;3.3;4
+32;2109;"some college";67094;4;3.4;4
+29;2031;"master's degree";106538;4;3.3;6
+27;1935;"some college";62701;4;3.4;4
+24;1849;"some high school";57021;3;3.2;5
+24;1828;"associate's degree";70581;3;3.1;6
+32;2121;"some college";50679;4;3.1;5
+28;1956;"associate's degree";63320;4;3;5
+29;2068;"master's degree";69164;4;3.6;4
+25;1801;"some college";57119;3;3.5;5
+24;1760;"some college";78288;3;3.4;3
+32;2275;"master's degree";104758;4;4;3
+30;2129;"bachelor's degree";100085;4;3.4;4
+27;1855;"associate's degree";99168;3;3.1;5
+26;1966;"some college";89016;4;3.4;7
+28;2080;"bachelor's degree";70882;4;3.3;4
+31;2123;"some college";79271;4;3.8;5
+31;2229;"bachelor's degree";78379;4;3.5;6
+22;1717;"high school";30058;3;2.9;9
+26;1868;"some high school";61856;4;3.2;4
+32;2208;"bachelor's degree";98261;4;3.9;3
+31;2054;"some college";80375;4;3.2;5
+27;1807;"some high school";59362;3;3.1;4
+27;1991;"some college";68616;4;3.7;3
+29;1874;"some high school";32290;4;3.2;6
+33;2194;"associate's degree";75808;4;3.2;5
+29;1947;"some college";81062;4;3.3;8
+23;1641;"some high school";46539;3;3.1;5
+25;1835;"some high school";71287;4;3.1;9
+24;1878;"high school";32558;3;3.1;7
+31;2096;"associate's degree";85614;4;3.6;5
+26;1905;"some college";77822;4;3.4;6
+29;2049;"some college";54889;4;3.5;5
+28;2085;"associate's degree";56238;4;3.3;5
+30;2069;"associate's degree";57088;4;3.5;6
+29;1974;"some high school";45734;4;3.1;6
+27;1697;"high school";61105;3;3.4;4
+30;2003;"high school";37407;4;3.2;5
+32;2154;"bachelor's degree";97216;4;3.5;4
+31;2303;"bachelor's degree";71074;4;3.7;3
+29;2018;"high school";65630;4;3.3;7
+28;1942;"high school";73605;4;3.4;4
+35;2294;"bachelor's degree";82854;4;3.5;5
+28;1981;"some college";55058;4;3.5;3
+26;1823;"some high school";50215;3;3.1;4
+34;2309;"associate's degree";82318;4;3.7;5
+29;1878;"some college";59498;4;3.5;3
+31;2003;"high school";57031;4;3.2;5
+25;1839;"high school";40535;3;3.3;5
+27;1965;"some high school";64972;4;3.3;5
+31;2111;"some high school";42677;4;3.4;6
+29;1960;"high school";41021;4;3.5;5
+26;1775;"some college";57070;3;3.4;3
+26;2027;"associate's degree";75587;4;3.5;4
+29;2213;"master's degree";62673;4;3.3;4
+28;1920;"associate's degree";91846;4;3;5
+29;2069;"some college";98439;4;3.8;3
+30;2014;"high school";67978;4;3.6;6
+25;1776;"high school";69155;3;2.8;5
+24;1822;"associate's degree";51659;4;3;9
+29;2014;"master's degree";64132;4;3.3;4
+29;2000;"some college";81137;4;3.4;4
+28;1957;"some high school";56604;4;3.3;6
+29;2142;"master's degree";54409;4;3.6;3
+27;2024;"bachelor's degree";82740;4;3.3;4
+34;2330;"bachelor's degree";80162;4;3.6;6
+28;1964;"some college";66886;4;3.4;4
+29;1973;"associate's degree";63686;4;3.5;4
+31;2145;"master's degree";76637;4;3.2;6
+28;2047;"bachelor's degree";111565;4;3.7;6
+32;2138;"high school";51710;4;3.4;4
+29;1984;"some high school";70655;4;3.5;4
+34;2330;"some college";69850;4;3.6;6
+31;2062;"associate's degree";60588;4;3.3;4
+28;2026;"master's degree";80678;4;3.3;7
+29;2081;"bachelor's degree";69070;4;3.3;4
+24;1794;"some college";63960;3;3.5;3
+30;2108;"master's degree";101757;4;3.4;5
+27;1856;"high school";58081;3;3.3;6
+27;1802;"some high school";52986;3;3.5;7
+28;2014;"bachelor's degree";70446;4;3.2;5
+28;2079;"master's degree";96811;4;3.3;7
+30;1997;"some high school";65028;4;3.5;6
+23;1710;"some college";74896;3;3.4;6
+31;2067;"associate's degree";85063;4;3.8;3
+32;2050;"some high school";30030;4;3.1;6
+30;2099;"associate's degree";70238;4;3.6;7
+25;1746;"high school";62617;3;3.4;4
+28;1961;"associate's degree";92044;4;3.2;7
+31;2086;"some college";79089;4;3.7;5
+34;2327;"master's degree";85855;4;3.5;4
+32;2083;"associate's degree";53867;4;3.2;6
+33;2354;"associate's degree";67698;4;3.7;4
+31;2007;"some college";76363;4;3.4;7
+32;2098;"some high school";58011;4;3.3;4
+28;2067;"associate's degree";90774;4;3.7;3
+22;1662;"some high school";51744;3;2.7;5
+23;1664;"high school";79157;3;3.6;3
+28;2038;"associate's degree";71289;4;3.7;5
+31;2111;"some high school";63644;4;3.3;4
+31;2000;"high school";40613;4;3.2;6
+32;2183;"some college";64874;4;3.4;6
+30;2077;"high school";46431;4;3.1;6
+29;2060;"high school";63017;4;3.6;5
+28;2064;"bachelor's degree";85687;4;3.8;5
+30;1988;"bachelor's degree";100312;4;3.5;4
+27;1878;"some college";53253;4;3.1;8
+28;1843;"some high school";50083;4;3.1;6
+28;1901;"high school";68974;3;3.4;8
+26;1940;"some college";80435;4;3;8
+29;2011;"associate's degree";61318;4;3;7
+28;1928;"some high school";65130;4;3.6;3
+33;2207;"some college";63092;4;3.4;4
+23;1724;"some high school";54818;3;3.3;3
+29;1970;"some high school";76065;4;3.3;5
+28;1924;"some high school";25052;4;3.4;6
+33;2301;"master's degree";85959;4;3.4;6
+30;2177;"some college";59979;4;3.3;4
+33;2191;"some college";67834;4;3.6;4
+26;1775;"some college";74739;3;3.1;8
+28;2082;"some college";75206;4;3.1;5
+26;1891;"associate's degree";84455;3;3.3;5
+26;1873;"high school";63728;3;3.5;3
+31;2068;"associate's degree";70007;4;3.2;6
+28;1979;"high school";50078;4;3.6;3
+28;1888;"some college";80294;4;3.4;4
+29;2163;"bachelor's degree";111580;4;3.6;7
+30;1981;"high school";52113;4;3.4;5
+31;2066;"master's degree";86211;4;3.5;4
+27;1876;"high school";69239;3;3.6;5
+25;1786;"high school";51917;3;3.1;4
+29;2071;"some college";87462;4;3.5;5
+28;2043;"some high school";75790;4;3.5;4
+29;1966;"associate's degree";79421;4;3.6;4
+26;1745;"high school";58652;3;3.3;4
+33;2157;"some college";46162;4;3.3;5
+31;2180;"master's degree";93940;4;3.5;5
+28;1912;"high school";64039;4;3.4;6
+31;2049;"associate's degree";80808;4;3.8;4
+25;1880;"some college";34272;4;3.3;7
+26;1777;"high school";62391;3;3.2;5
+31;2051;"bachelor's degree";81731;4;3.6;4
+33;2153;"associate's degree";74855;4;3.5;5
+24;1772;"some high school";45746;3;3;5
+27;1982;"some college";57364;4;3.2;4
+31;2191;"master's degree";96879;4;3.7;4
+26;1884;"some high school";46347;4;3.3;6
+28;1965;"high school";70179;4;3;8
+26;1922;"high school";52687;4;3.3;4
+26;1851;"some college";56543;3;3.5;3
+28;1759;"high school";84265;3;3.3;4
+32;2148;"bachelor's degree";112865;4;3.8;4
+28;1895;"some high school";32357;4;3.2;5
+26;1955;"some college";82047;4;3.6;3
+27;1976;"some high school";66320;4;3.7;3
+22;1738;"some college";89734;3;3.1;5
+32;2188;"some college";88846;4;3.7;5
+28;1993;"master's degree";83385;4;3.4;7
+30;2079;"master's degree";91867;4;3.8;3
+28;2028;"some college";46390;4;3.4;6
+30;2001;"some college";87667;4;3.5;5
+27;1881;"high school";50248;3;3.1;4
+27;1897;"some college";70152;4;3.6;3
+31;2133;"some college";72536;4;3.2;5
+27;1859;"some college";83756;3;2.9;5
+31;2031;"associate's degree";54082;4;3.7;6
+30;2101;"bachelor's degree";71340;4;3.1;8
+26;1921;"high school";89368;3;3.4;4
+30;2167;"bachelor's degree";72606;4;3.8;6
+29;1906;"some high school";59743;4;3.3;8
+31;2106;"master's degree";76544;4;3.2;5
+27;1894;"some college";65880;4;3.3;4
+31;2158;"some high school";22191;4;3.4;6
+28;1941;"some college";73652;4;3.4;5
+33;2078;"some college";59329;4;3.3;4
+31;2105;"some high school";41372;4;3.3;6
+28;1925;"some high school";55335;4;3.5;3
+26;1892;"high school";68167;3;3.2;7
+24;1799;"some high school";50326;3;3.2;4
+31;2214;"some college";75645;4;3.8;3
+27;2024;"some college";61769;4;3.3;5
+26;1954;"high school";43384;4;3.3;5
+28;1928;"associate's degree";94921;4;3.6;6
+27;1918;"high school";64682;4;3.6;3
+25;1772;"high school";49063;3;3;5
+27;1961;"some high school";32992;4;3.3;5
+30;2105;"master's degree";96412;4;3.6;4
+27;1823;"high school";60404;3;3.4;8
+34;2211;"some college";72022;4;3.5;4
+30;2079;"high school";46946;4;3.4;5
+22;1715;"some high school";83495;3;3.1;4
+27;1933;"high school";52021;4;3.3;5
+30;2106;"some high school";51653;4;3.6;3
+29;2091;"some college";51426;4;3.7;4
+27;1894;"bachelor's degree";88103;4;3;6
+27;1909;"some high school";49781;4;3.2;5
+26;1898;"associate's degree";63890;3;3.3;4
+25;1707;"some high school";72767;3;3.4;6
+28;2062;"associate's degree";87492;4;3.8;3
+30;2015;"high school";70737;4;3.8;4
+29;2021;"high school";60404;4;3.6;4
+23;1749;"high school";55410;3;3;4
+21;1640;"some high school";54847;3;3.4;3
+31;2000;"some high school";49405;4;3.3;5
+27;1903;"high school";53437;4;3.4;4
+25;1882;"some college";71828;3;3.2;8
+30;2105;"bachelor's degree";84698;4;3.8;3
+31;1989;"some college";68788;4;3.4;4
+29;1937;"some high school";75042;4;3.2;5
+32;2139;"bachelor's degree";103774;4;4;3
+25;1747;"some college";74725;3;3.2;5
+34;2172;"master's degree";115112;4;3.9;4
+27;1926;"high school";68447;4;3.3;5
+26;1941;"some high school";35481;4;3.1;5
+25;1850;"some college";54880;3;3.1;4
+28;1924;"some college";76989;4;3.3;4
+30;2101;"bachelor's degree";71120;4;3.3;5
+25;1763;"some high school";56887;3;3.3;4
+32;2156;"associate's degree";104360;4;4;3
+32;2279;"bachelor's degree";65650;4;3.3;5
+29;1993;"high school";61607;4;3.4;4
+29;2073;"bachelor's degree";86205;4;3.5;5
+26;1833;"high school";61853;3;3.4;6
+23;1811;"high school";53721;3;3.3;3
+26;1951;"high school";52750;4;3.1;5
+31;2174;"bachelor's degree";67851;4;3.4;4
+25;1856;"associate's degree";84679;3;3.3;5
+28;2004;"high school";31889;4;3.3;5
+28;2109;"master's degree";94346;4;3.4;4
+31;1985;"some high school";72416;4;3.4;4
+31;2114;"bachelor's degree";70412;4;3.2;5
+28;1958;"some high school";49516;4;3.3;6
+29;2042;"bachelor's degree";113597;4;3.8;3
+29;2001;"bachelor's degree";65737;4;3.5;4
+29;2031;"some college";81633;4;3.4;7
+27;1857;"associate's degree";58164;3;3.3;6
+29;1965;"some college";72052;4;3.2;4
+32;2049;"high school";79015;4;3.9;3
+30;2038;"master's degree";68861;4;3.3;6
+24;1840;"some college";69606;3;3.1;5
+26;1779;"some college";66114;3;3.1;5
+28;1954;"some high school";22892;4;3.3;6
+30;2024;"high school";41464;4;3.2;6
+25;1812;"some high school";46645;3;3.3;4
+24;1788;"some college";68691;3;3;6
+29;1988;"some college";88421;4;3.2;6
+27;2076;"bachelor's degree";70671;4;3;5
+27;1863;"associate's degree";70826;4;3.4;4
+30;2189;"bachelor's degree";102665;4;3.9;3
+35;2278;"associate's degree";93446;4;3.8;5
+29;2009;"bachelor's degree";111894;4;3.4;4
+30;2063;"high school";46029;4;3.4;6
+26;1958;"some college";54810;4;3.3;6
+35;2296;"master's degree";83525;4;3.8;4
+27;1991;"master's degree";89224;4;3.6;3
+31;2087;"associate's degree";71209;4;3.8;7
+29;1997;"associate's degree";51380;4;3.4;3
+29;2074;"high school";39310;4;3.1;6
+26;1835;"high school";67736;3;3.5;3
+28;1999;"bachelor's degree";107502;4;3.8;3
+28;1893;"high school";30293;3;3.2;7
+30;2171;"bachelor's degree";77054;4;3.5;8
+31;2115;"bachelor's degree";100889;4;3.7;4
+25;1816;"bachelor's degree";92063;3;3;5
+29;2048;"some college";70458;4;3.4;4
+32;2047;"associate's degree";90475;4;3.7;4
+30;1967;"some high school";24122;4;3.3;8
+30;1970;"high school";48860;4;3.5;4
+29;2010;"associate's degree";72982;4;3.6;3
+30;1943;"high school";56933;4;3.5;3
+34;2296;"master's degree";61254;4;3.7;4
+29;1966;"high school";66154;4;3.4;4
+27;2014;"associate's degree";53131;4;3.5;3
+25;1729;"some high school";22697;3;3;5
+28;1833;"bachelor's degree";111333;4;3.3;7
+27;1986;"some college";49942;4;3.6;4
+25;1819;"some high school";28525;3;3;5
+25;1778;"some college";81119;3;3.2;4
+29;1917;"high school";46412;4;3.5;4
+33;2266;"some college";95279;4;3.6;5
+29;2023;"associate's degree";88770;4;3.7;3
+24;1781;"some college";72460;3;3.1;7
+28;1932;"high school";32585;4;3.1;7
+29;2003;"some high school";66611;4;3.4;6
+31;2125;"bachelor's degree";92900;4;3.2;5
+27;1899;"some high school";73054;4;3.4;4
+28;1945;"bachelor's degree";91741;4;3.5;4
+28;1883;"some high school";56567;4;3.5;3
+28;1927;"associate's degree";82803;4;3.6;3
+29;1964;"high school";76164;4;3.3;4
+28;1979;"associate's degree";82767;4;3.6;4
+28;1995;"some high school";45634;4;3.2;5
+27;1949;"some high school";30833;4;3.4;4
+26;1763;"high school";38095;3;3.3;8
+28;2024;"some high school";71050;4;3.3;6
+34;2234;"high school";41676;4;3.4;9
+27;1809;"some college";52098;3;3;9
+35;2278;"associate's degree";103101;4;3.9;4
+31;2162;"some college";92781;4;3.7;4
+27;1979;"some high school";69626;4;3.5;4
+28;1987;"some high school";68928;4;3.4;6
+34;2308;"master's degree";108832;4;3.9;4
+29;2026;"associate's degree";101966;4;3.5;5
+32;2186;"some college";54361;4;3.5;4
+29;2118;"some high school";32963;4;3.1;7
+33;2110;"high school";70819;4;3.8;3
+32;2037;"high school";84231;4;3.5;6
+29;2034;"associate's degree";58720;4;3.6;5
+26;1883;"associate's degree";57927;4;3.4;4
+26;1830;"high school";33668;4;3.5;4
+29;2080;"master's degree";89541;4;3.7;3
+29;2021;"some high school";33392;4;3.5;4
+28;2136;"bachelor's degree";80213;4;3.4;4
+25;1831;"bachelor's degree";74145;3;3.2;4
+26;1975;"some high school";37441;4;2.9;6
+35;2265;"associate's degree";79530;4;3.7;7
+26;1963;"master's degree";89885;4;3.2;4
+32;2251;"bachelor's degree";90652;4;3.8;5
+28;1928;"high school";79511;4;3.7;3
+24;1801;"some college";84588;3;3.2;4
+30;2033;"bachelor's degree";78168;4;3.5;5
+32;2134;"master's degree";101832;4;3.6;4
+29;1984;"some high school";54859;4;3.6;5
+23;1750;"some high school";45059;3;2.9;6
+27;1909;"some college";50764;4;3.2;6
+29;1985;"associate's degree";83925;4;3.5;6
+29;2086;"bachelor's degree";82881;4;3.2;5
+27;1896;"some college";71634;4;3.2;4
+34;2358;"associate's degree";83577;4;3.6;4
+28;2097;"master's degree";124470;4;3.6;7
+28;1988;"some college";57703;4;3.3;4
+28;2078;"some college";91873;4;3.5;5
+27;1884;"some high school";22932;4;3;5
+25;1892;"bachelor's degree";72725;3;3.3;4
+27;1973;"some college";82813;4;3.3;4
+28;2064;"some college";70783;4;3.5;4
+27;1882;"associate's degree";67599;4;3.3;4
+30;2055;"some college";84318;4;3.5;4
+34;2142;"some high school";32371;4;3.5;5
+27;1950;"high school";89155;4;3.2;7
+30;2204;"some college";85745;4;3.4;6
+29;2056;"some high school";45521;4;3.2;5
+27;1873;"some college";86540;4;3.3;5
+26;1919;"some high school";63216;4;3.5;4
+33;2198;"bachelor's degree";107353;4;3.6;5
+27;1989;"bachelor's degree";71910;4;3.5;3
+26;1882;"some high school";55525;3;3.1;5
+32;2090;"bachelor's degree";94402;4;3.7;3
+27;1895;"high school";56359;4;3.3;4
+25;1708;"some college";47134;3;3;5
+28;1933;"high school";44433;4;3.1;8
+31;2178;"high school";63953;4;3.6;4
+23;1772;"some college";62215;3;3.3;3
+28;1976;"high school";44273;4;3.4;5
+30;2046;"high school";61291;4;3.5;4
+29;1972;"some high school";57891;4;3.4;4
+30;2014;"associate's degree";57454;4;3.1;6
+31;2180;"bachelor's degree";54502;4;3.3;4
+34;2342;"bachelor's degree";98469;4;3.3;5
+35;2290;"bachelor's degree";70541;4;3.9;6
+24;1715;"associate's degree";82959;3;3.1;5
+29;1952;"some college";70871;4;3.5;4
+31;2106;"high school";57191;4;3;7
+29;2018;"some high school";52651;4;3.4;6
+25;1856;"some college";76085;4;3.6;3
+29;2101;"associate's degree";39594;4;3.5;4
+31;2152;"associate's degree";88339;4;3.4;7
+33;2217;"some college";79005;4;3.5;4
+32;2077;"high school";62571;4;3.2;5
+30;2138;"some college";78231;4;3.5;4
+31;2138;"bachelor's degree";69281;4;3.2;5
+27;1875;"some high school";39808;4;3.3;5
+29;1967;"associate's degree";76076;4;3.6;6
+28;1945;"high school";59708;3;3.6;5
+29;2124;"some college";92570;4;3.5;6
+27;1800;"high school";55685;3;3;5
+29;1956;"bachelor's degree";84773;4;3.3;7
+29;2059;"bachelor's degree";66884;4;3.3;5
+29;2114;"bachelor's degree";100011;4;3.7;7
+28;1855;"some high school";30246;4;3.2;5
+25;1864;"some college";68990;3;3;6
+30;2099;"some high school";44058;4;3.2;8
+32;2204;"some college";61511;4;3.2;5
+32;2266;"some college";55909;4;3.4;4
+28;1935;"high school";76499;4;3.2;5
+24;1685;"some high school";42246;3;3;6
+30;2102;"some high school";38675;4;3.4;5
+32;2180;"bachelor's degree";72370;4;3.7;4
+28;1934;"some high school";64746;4;3;5
+27;1923;"high school";44380;4;3.5;5
+28;2103;"master's degree";95091;4;3.7;4
+28;2013;"high school";54189;4;3.3;4
+29;2113;"some college";72302;4;3.5;8
+25;1934;"associate's degree";55311;3;3.5;3
+32;2222;"associate's degree";62214;4;3.4;4
+29;2044;"associate's degree";79376;4;3.6;8
+27;1974;"bachelor's degree";70771;4;3;6
+31;2070;"bachelor's degree";94779;4;3.5;4
+25;1806;"some college";76153;3;3.2;4
+26;1771;"high school";57030;3;3.2;4
+27;1960;"high school";47355;4;3.3;5
+29;2111;"associate's degree";58606;4;3.4;5
+28;1981;"high school";68553;4;3.4;5
+29;2063;"some high school";78554;4;3.8;3
+25;1937;"some high school";47676;4;3.3;5
+28;1989;"some high school";79527;4;3.3;4
+27;1957;"associate's degree";65536;4;3.4;4
+30;1992;"some high school";66121;4;3.2;7
+29;1938;"associate's degree";76536;4;3.2;8
+31;2146;"high school";73118;4;3.3;7
+26;1871;"some college";47948;3;3.2;5
+32;2132;"some college";47343;4;3.6;5
+27;1947;"high school";50013;4;3.3;5
+31;2072;"high school";51642;4;3.5;4
+28;2012;"some college";66896;4;3.6;3
+32;2083;"bachelor's degree";89517;4;3.8;4
+22;1598;"some college";73060;3;3;5
+29;2018;"associate's degree";67213;4;3.3;4
+30;2060;"associate's degree";101694;4;3.8;3
+32;2099;"some high school";68197;4;3.4;6
+29;2016;"some high school";36428;4;3.2;5
+29;2095;"associate's degree";94662;4;3.9;6
+29;2056;"associate's degree";79834;4;3.4;4
+27;1970;"associate's degree";70870;4;3.3;6
+35;2226;"high school";81528;4;3.6;4
+29;2041;"associate's degree";99695;4;3.6;6
+27;1868;"some college";56722;4;3.3;4
+29;2014;"some college";56964;4;2.9;9
+24;1888;"bachelor's degree";66372;3;3.3;4
+24;1733;"associate's degree";47323;3;2.9;6
+28;1956;"associate's degree";62151;4;3.4;4
+30;2056;"high school";72235;4;3.4;5
+32;2136;"some college";58269;4;3.7;3
+28;1849;"high school";49161;3;3.5;5
+32;2170;"bachelor's degree";92676;4;3.6;4
+28;1899;"high school";60887;4;3.4;8
+30;2098;"associate's degree";53931;4;3.3;5
+24;1748;"some college";89555;3;3.4;4
+30;2146;"bachelor's degree";102741;4;3.5;4
+30;2087;"some college";51943;4;3.3;4
+27;2048;"master's degree";89723;4;3.3;4
+28;1938;"high school";56564;4;3.2;8
+27;1978;"some college";74675;4;3.4;4
+30;2235;"bachelor's degree";75686;4;3.5;4
+26;1917;"some college";48630;4;3.3;5
+31;2086;"associate's degree";79405;4;3.8;3
+27;1894;"some college";72324;4;3.6;3
+26;1969;"some high school";57007;4;3.2;5
+26;1872;"high school";30384;3;2.9;6
+28;1914;"high school";44890;4;3.3;6
+26;2004;"bachelor's degree";83394;4;3.3;4
+28;2003;"bachelor's degree";64362;4;3.5;7
+27;1896;"some high school";55887;4;3.1;7
+28;1897;"high school";55399;4;3.2;4
+30;1985;"some college";81840;4;3.5;4
+27;1916;"some college";67994;4;3.3;4
+32;2328;"bachelor's degree";59035;4;3.3;5
+26;1750;"some high school";45142;3;3.4;4
+30;2018;"some high school";58297;4;3.3;7
+29;2013;"high school";91228;4;3.4;4
+32;2075;"associate's degree";61446;4;3.4;8
+25;1891;"some college";71120;3;3.2;4
