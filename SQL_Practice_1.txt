@@ -1,0 +1,251 @@
+1.	You did such a great job helping Julia with her last coding contest challenge that she wants you to work on this one, too!
+The total score of a hacker is the sum of their maximum scores for all of the challenges. Write a query to print the hacker_id, name, and total score of the hackers ordered by the descending score. If more than one hacker achieved the same total score, then sort the result by ascending hacker_id. Exclude all hackers with a total score of  from your result.
+Input Format
+The following tables contain contest data:
+•	Hackers: The hacker_id is the id of the hacker, and name is the name of the hacker. 
+•	Submissions: The submission_id is the id of the submission, hacker_id is the id of the hacker who made the submission, challenge_id is the id of the challenge for which the submission belongs to, and score is the score of the submission.
+
+-- total = for each challenge (max+max + max 
+-- find total for each hacker ^ ; 
+-- 1. maximum scores for challenges 
+
+select der.id, der.hackerName,  sum(maximum) as maxscore
+from (select max(score) as maximum,challenge_id, h.name as hackerName, h.hacker_id as id
+            from Submissions s
+            right Join hackers h ON s.hacker_id = h.hacker_id
+            group by challenge_id, h.hacker_id, h.name
+            order by h.name ) as der
+group by der.id, der.hackerName
+having sum(maximum) != 0
+order by sum(maximum) desc, der.id 
+
+Easy: 
+2.	Given a table, write a solution to report all the duplicate emails. Note that it's guaranteed that the email field is not NULL.
+
+select email
+from person p
+group by  email 
+having count(email) > 1
+-- 1. count email where count > 1 
+
+/* ALTERNATIVE 
+SELECT distinct email 
+FROM person p 
+WHERE EXISTS (
+    SELECT 1
+    FROM person pe
+    WHERE p.id <> pe.id -- Ensure we're not comparing the same person
+    AND p.email = pe.email -- Check for matching emails
+);
+*/
+
+
+3.	Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+The STATION table is described as follows:
+(select CITY, length(CITY) as city_len from STATION order by city_len asc, CITY asc limit 1) 
+UNION
+(select CITY, length(city) as city_len from STATION order by city_len desc, CITY asc limit 1);
+
+
+4.	Write a solution to delete all duplicate emails, keeping only one unique email with the smallest id.
+/*we'll delete the records from p1 that match the condition when we join person table to itself based on the same email and condition that id is bigger'
+*/
+
+DELETE p1
+FROM person p1
+JOIN person p2 ON p1.email = p2.email AND p1.id > p2.id;
+
+5.	Write a solution to find the ids of products that are both low fat and recyclable.
+# Write your MySQL query statement below
+select product_id
+from Products 
+where low_fats = 'Y' AND recyclable = 'Y';
+
+6.	Find the names of the customer that are not referred by the customer with id = 2.
+# Write your MySQL query statement below
+Select name
+from customer 
+where referee_id != 2 OR referee_id is NULL ; // some refere  e_id are null 
+
+7.	A country is big if: it has an area of at least three million (i.e., 3000000 km2), or it has a population of at least twenty-five million (i.e., 25000000). Write a solution to find the name, population, and area of the big countries.
+# Write your MySQL query statement below
+select name, population, area 
+from world 
+where area >= 3000000 OR population >= 25000000;
+
+8.	Write a solution to find all the authors that viewed at least one of their own articles. Return the result table sorted by id in ascending order. The result format is in the following example.
+select Distinct(author_id) as id
+from views
+where author_id = viewer_id
+Order by id;
+
+9.	Write a solution to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is strictly greater than 15.
+# Write your MySQL query statement below
+select tweet_id 
+from Tweets 
+where length(content) > 15;
+
+10.	Write a solution to show the unique ID of each user, If a user does not have a unique ID replace just show null.
+# Write your MySQL query statement below
+select unique_id, name
+from Employees e
+Left Join
+EmployeeUNI em on e.id = em.id;
+
+11.	Write a solution to find all dates' Id with higher temperatures compared to its previous dates (yesterday).
+select w1.id
+from weather w1
+where w1.temperature > (select w2.temperature from weather w2 where w2.recordDate = w1.recordDate - Interval 1 day)
+group by w1.id;
+ OR : 
+select w1.id
+from weather w1, weather w2
+where DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature; 
+-- DATEDIFF - function ensures that the difference between the two dates is 1 
+OR: 
+# Write your MySQL query statement below
+select w1.id 
+from Weather as w1 
+inner join Weather as w2 
+on DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature;
+
+12.	Write a solution to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.
+# Write your MySQL query statement below
+select v.customer_id, count(v.visit_id) as count_no_trans
+from visits v 
+left join transactions t on v.visit_id = t.visit_id
+where t.transaction_id is null
+group by v.customer_id;
+
+13.	Calculate the total revenue from each customer in March 2019. Include only customers who were active in March 2019. Output the revenue along with the customer id and sort the results based on the revenue in descending order.
+select cust_id, sum(total_order_cost) AS revenue
+from orders
+where month(order_date) = 3 AND year(order_date) = 2019
+GROUP BY cust_id 
+ORDER BY revenue DESC;
+
+14.	Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
+SELECT DISTINCT city
+FROM station
+WHERE city REGEXP '^[aeiou].*[aeiou]$';
+
+15.	Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+SELECT DISTINCT city
+FROM station
+WHERE NOT city REGEXP '^[AEIOU]' ;
+
+16.	Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+SELECT DISTINCT city
+FROM station
+WHERE NOT city REGEXP '[AEIOU]$' ;
+
+17.	Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+select distinct city 
+from station
+where NOT city REGEXP '^[aeiou]'
+OR 
+NOT city REGEXP '[aeiou]$';
+
+18.	Query the Name of any student in STUDENTS who scored higher than  Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+SELECT Name
+FROM Students
+where Marks > 75
+order by right(name,3) asc, ID asc;
+
+19.	You did such a great job helping Julia with her last coding contest challenge that she wants you to work on this one, too! The total score of a hacker is the sum of their maximum scores for all of the challenges. Write a query to print the hacker_id, name, and total score of the hackers ordered by the descending score. If more than one hacker achieved the same total score, then sort the result by ascending hacker_id. Exclude all hackers with a total score of  from your result.
+select m.hacker_id, h.name, sum(score2) as total_score 
+from (
+    select hacker_id, challenge_id, max(score) as score2
+    from Submissions 
+    group by hacker_id, challenge_id) as m
+join Hackers as h
+on m.hacker_id = h.hacker_id
+group by m.hacker_id, h.name
+having total_score > 0
+order by total_score desc, m.hacker_id;
+
+
+20.	Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+•	Equilateral: It's a triangle with  sides of equal length.
+•	Isosceles: It's a triangle with  sides of equal length.
+•	Scalene: It's a triangle with  sides of differing lengths.
+•	Not A Triangle: The given values of A, B, and C don't form a triangle.
+select 
+case 
+WHEN (A+B <= C OR B+C <= A OR A+C <= B) THEN 'Not A Triangle'  
+WHEN A = B AND B = C THEN 'Equilateral'
+when A = B OR A = C OR B = C THEN 'Isosceles'
+ELSE 'Scalene'
+end 
+from triangles
+
+21.	In summary, this query retrieves information about flights, including carrier, flight number, and the count of cancelled flights, for a specific time period within the year 2000. The result is then grouped by carrier and flight number, ordered by the count of cancelled flights in descending order, and limited to 500 rows.
+SELECT
+    flights.carrier  AS flights_carrier,
+    flights.flight_num  AS flights_flight_num,
+    COUNT(CASE WHEN flights.cancelled  THEN 1 ELSE NULL END) AS flights_cancelled_count
+FROM `cloud-training-demos.looker_flights.flights`  AS flights
+WHERE ((( flights.arr_time  ) >= ((TIMESTAMP('2000-01-01 00:00:00'))) AND ( flights.arr_time  ) < ((TIMESTAMP(DATETIME_ADD(DATETIME(TIMESTAMP('2000-01-01 00:00:00')), INTERVAL 1 YEAR))))))
+GROUP BY
+    1, 2
+ORDER BY
+    3 DESC
+LIMIT 500
+
+22.	This query selects the first name (firstName) and last name (lastName) from the Person table, along with the city (city) and state (state) from the Address table. The LEFT JOIN ensures that all records from the Person table are included, and matching records from the Address table are joined. If there is no matching address, the columns from the Address table will be filled with NULL.
+SELECT
+    p.firstName,
+    p.lastName,
+    a.city,
+    a.state
+FROM
+    Person p
+LEFT JOIN
+    Address a ON p.personId = a.personId;
+
+23.	  Rank Scores 
+Table: Scores
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| score       | decimal |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains the score of a game. Score is a floating point value with two decimal places.
+Write a solution to find the rank of the scores. The ranking should be calculated according to the following rules:
+•	The scores should be ranked from the highest to the lowest.
+•	If there is a tie between two scores, both should have the same ranking.
+•	After a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no holes between ranks.
+•	Return the result table ordered by score in descending order.
+SELECT
+    id,
+    score,
+    DENSE_RANK() OVER (ORDER BY score DESC) AS `Rank`
+FROM
+    Scores
+ORDER BY
+    score DESC;
+This query selects the id, score, and the calculated rank (Rank) using the DENSE_RANK() window function. The ORDER BY score DESC ensures that the scores are ordered from highest to lowest. The result is then ordered by score in descending order.
+The DENSE_RANK() function assigns a rank to each score, handling ties by giving the same rank to identical scores and ensuring consecutive integers without any gaps in the ranking.
+
+24.	There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
+The time to complete a process is the 'end' timestamp minus the 'start' timestamp. The average time is calculated by the total time to complete every process on the machine divided by the number of processes that were run.
+The resulting table should have the machine_id along with the average time as processing_time, which should be rounded to 3 decimal places. Return the result table in any order.
+# Write your MySQL query statement below
+select a1.machine_id, round(avg(a2.timestamp-a1.timestamp), 3) as processing_time 
+from Activity a1
+join Activity a2 
+on a1.machine_id=a2.machine_id and a1.process_id=a2.process_id
+and a1.activity_type='start' and a2.activity_type='end'
+group by a1.machine_id
+
+25.	Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+select distinct city
+from station 
+where city  regexp  '^[^aeiou]' or city regexp '[^aeiou]$'
+/* OR 
+select distinct city 
+from station
+where NOT city REGEXP '^[aeiou]'
+OR NOT city REGEXP '[aeiou]$';*/
