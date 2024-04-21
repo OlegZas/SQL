@@ -10,5 +10,7 @@ Difficulty ranges significantly.
 <img width="789" alt="Earn More" src="https://github.com/OlegZas/SQL/assets/115661636/2f77a41b-4f8c-41c0-ba88-53515225b8b9">
 <img width="937" alt="Substring" src="https://github.com/OlegZas/SQL/assets/115661636/762bb082-2561-4d09-9721-54008ce161b8">
 <img width="775" alt="Trim" src="https://github.com/OlegZas/SQL/assets/115661636/158041bb-2d4e-48cc-acbb-21f3161c38da">
---
+
+---
+
 <img width="587" alt="Procedures 1" src="https://github.com/OlegZas/SQL/assets/115661636/1e41acfc-5535-426b-a468-80f038e33217">
