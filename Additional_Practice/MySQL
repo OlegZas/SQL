@@ -1,0 +1,28 @@
+-- Reformat the table such that there is a department id column and a revenue column for each month.
+-- Return the result table in any order.
+-- The result format is in the following example.
+8/5/2024
+select
+id,
+sum(if(month = 'Jan', revenue, null)) as Jan_Revenue,
+sum(if(month = 'Feb', revenue, null)) as Feb_Revenue,
+sum(if(month = 'Mar', revenue, null)) as Mar_Revenue,
+sum(if(month = 'Apr', revenue, null)) as Apr_Revenue,
+sum(if(month = 'May', revenue, null)) as May_Revenue,
+sum(if(month = 'Jun', revenue, null)) as Jun_Revenue,
+sum(if(month = 'Jul', revenue, null)) as Jul_Revenue,
+sum(if(month = 'Aug', revenue, null)) as Aug_Revenue,
+sum(if(month = 'Sep', revenue, null)) as Sep_Revenue,
+sum(if(month = 'Oct', revenue, null)) as Oct_Revenue,
+sum(if(month = 'Nov', revenue, null)) as Nov_Revenue,
+sum(if(month = 'Dec', revenue, null)) as Dec_Revenue
+from Department
+group by id;
+
+-- Write a solution to report the products that were only sold in the first quarter of 2019. 
+-- That is, between 2019-01-01 and 2019-03-31 inclusive.
+
+select product_id,product_name
+from product natural join sales
+group by product_id
+having min(sale_date)>='2019-01-01' and max(sale_date)<='2019-03-31'
