@@ -1,7 +1,9 @@
-<b>-- Reformat the table such that there is a department id column and a revenue column for each month.</b>
+****************************************************************************
+8/5/2024
+1.
+-- Reformat the table such that there is a department id column and a revenue column for each month.
 -- Return the result table in any order.
 -- The result format is in the following example.
-8/5/2024
 select
 id,
 sum(if(month = 'Jan', revenue, null)) as Jan_Revenue,
@@ -19,24 +21,28 @@ sum(if(month = 'Dec', revenue, null)) as Dec_Revenue
 from Department
 group by id;
 
-<b>-- Write a solution to report the products that were only sold in the first quarter of 2019. 
--- That is, between 2019-01-01 and 2019-03-31 inclusive.</b>
-
+2.
+-- Write a solution to report the products that were only sold in the first quarter of 2019. 
+-- That is, between 2019-01-01 and 2019-03-31 inclusive.
 select product_id,product_name
 from product natural join sales
 group by product_id
 having min(sale_date)>='2019-01-01' and max(sale_date)<='2019-03-31'
-
+****************************************************************************
+****************************************************************************
+****************************************************************************
 8/6/24
+1.
 # Write a solution to find the first login date for each player.
 # select player_id and first_login where first_login = min 
 select player_id, min(event_date) as first_login 
 from Activity
 group by player_id
 
-<b>-- Write a solution to rearrange the Products table so that each row has (product_id, store, price). 
+2.
+-- Write a solution to rearrange the Products table so that each row has (product_id, store, price). 
 If a product is not available in a store, do not include a row with that product_id and store 
-combination in the result table.</b>
+combination in the result table.
 
 select product_id, 'store1' as store ,  store1 as price
 from Products 
@@ -49,8 +55,8 @@ union all
 select product_id,'store3' as store,store3 as price 
 from products
 where store3 is not null
-
--- For each date_id and make_name, find the number of distinct lead_id's and distinct partner_id's.</b>
+3.
+-- For each date_id and make_name, find the number of distinct lead_id's and distinct partner_id's.
 select date_id, make_name, count(distinct lead_id) as "unique_leads", count(distinct partner_id) as "unique_partners"
 from DailySales
 group by date_id, make_name 
