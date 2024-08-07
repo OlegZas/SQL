@@ -26,3 +26,31 @@ select product_id,product_name
 from product natural join sales
 group by product_id
 having min(sale_date)>='2019-01-01' and max(sale_date)<='2019-03-31'
+
+8/6/24
+# Write a solution to find the first login date for each player.
+# select player_id and first_login where first_login = min 
+select player_id, min(event_date) as first_login 
+from Activity
+group by player_id
+
+-- Write a solution to rearrange the Products table so that each row has (product_id, store, price). 
+If a product is not available in a store, do not include a row with that product_id and store 
+combination in the result table.
+
+select product_id, 'store1' as store ,  store1 as price
+from Products 
+where store1 is not null
+union all 
+select product_id,'store2' as store, store2 as price
+from Products 
+where store2 is not null
+union all 
+select product_id,'store3' as store,store3 as price 
+from products
+where store3 is not null
+
+-- For each date_id and make_name, find the number of distinct lead_id's and distinct partner_id's.
+select date_id, make_name, count(distinct lead_id) as "unique_leads", count(distinct partner_id) as "unique_partners"
+from DailySales
+group by date_id, make_name 
