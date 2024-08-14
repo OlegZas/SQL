@@ -60,3 +60,12 @@ where store3 is not null
 select date_id, make_name, count(distinct lead_id) as "unique_leads", count(distinct partner_id) as "unique_partners"
 from DailySales
 group by date_id, make_name 
+
+
+-- 8/13/24
+/*
+1. Write a solution to find the second highest salary from the Employee table. If there is no second highest salary, return null (return None in Pandas).
+*/
+Select max(e.salary) as SecondHighestSalary 
+from employee e
+where e.salary not in (select max(salary) from employee em)
