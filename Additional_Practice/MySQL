@@ -69,3 +69,25 @@ group by date_id, make_name
 Select max(e.salary) as SecondHighestSalary 
 from employee e
 where e.salary not in (select max(salary) from employee em)
+
+-- 8/14/24
+/* 1. 
+Write a solution to report the distance traveled by each user.
+Return the result table ordered by travelled_distance in descending order,
+if two or more users traveled the same distance, order them by their name in ascending order. */ 
+
+SELECT 
+    u.name, 
+    CASE
+        WHEN r.distance > 0 THEN SUM(r.distance)
+        ELSE 0
+    END AS travelled_distance
+FROM 
+    users u
+LEFT JOIN 
+    rides r ON u.id = r.user_id  
+GROUP BY 
+    u.id
+ORDER BY 
+    travelled_distance DESC, 
+    u.name;
