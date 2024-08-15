@@ -96,3 +96,8 @@ ORDER BY
 SELECT patient_id, patient_name, conditions    
 FROM Patients 
 WHERE conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%'
+-- 3. 
+/*Write a solution to fix the names so that only the first character is uppercase and the rest are lowercase. Return the result table ordered by user_id. */
+SELECT user_id, CONCAT(UPPER(SUBSTR(name,1,1)), LOWER(SUBSTR(name,2))) AS name
+FROM Users 
+ORDER BY user_id
