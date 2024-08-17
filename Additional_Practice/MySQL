@@ -201,3 +201,16 @@ WHERE EXISTS (
     AND p.email = pe.email -- Check for matching emails
 );
 */
+
+/* 4. 
+Write a solution to find all customers who never order anything. */ 
+
+/*Option 1 */ SELECT name AS Customers
+FROM Customers c
+LEFT JOIN Orders o ON c.id = o.customerId
+WHERE o.id IS NULL
+
+/* Option 2 */ 
+SELECT name AS Customers 
+FROM Customers c 
+WHERE c.id NOT IN(SELECT o.customerId from ORDERS o)
