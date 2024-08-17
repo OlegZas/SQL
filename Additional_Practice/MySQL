@@ -214,3 +214,10 @@ WHERE o.id IS NULL
 SELECT name AS Customers 
 FROM Customers c 
 WHERE c.id NOT IN(SELECT o.customerId from ORDERS o)
+
+/* 5. Write a solution to find all the classes that have at least five students. */
+
+SELECT class 
+FROM Courses 
+GROUP BY class 
+HAVING count(1) >= 5
