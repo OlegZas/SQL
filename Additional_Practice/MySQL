@@ -162,3 +162,14 @@ Select customer_number
 from t1
 where countNum = (SELECT maxNum from t2)
 ;
+
+/* 8/17/2024
+1. Find all numbers that appear at least three times consecutively.
+Return the result table in any order.
+The result format is in the following example. */ 
+
+SELECT l.num as ConsecutiveNums 
+FROM Logs l
+JOIN logs o on l.id = o.id+1 and l.num = o.num
+JOIN logs g on l.id = g.id +2 and l.num = g.num
+GROUP BY l.num
