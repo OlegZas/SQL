@@ -117,3 +117,48 @@ After a tie, the next ranking number should be the next consecutive integer valu
 select  score, dense_rank() over(order by score desc) as `rank`
 from scores 
 ; 
+
+-- 8/16/24
+/*
+1. Write a solution to report the name and balance of users with a balance higher than 10000. The balance of an account is equal to the sum of the amounts of all transactions involving that account.
+Return the result table in any order. */ 
+
+SELECT name, sum(amount) as Balance
+FROM Users u
+LEFT JOIN Transactions t ON u.account = t.account 
+GROUP BY name 
+HAVING sum(amount) > 10000;
+
+/* 2.
+Find the names of the customer that are not referred by the customer with id = 2.Return the result table in any order.
+The result format is in the following example.*/
+
+Select name
+from customer 
+where referee_id != 2 OR referee_id is NULL ;
+
+/*3. 
+ Write a solution to find the customer_number for the customer who has placed the largest number of orders.
+The test cases are generated so that exactly one customer will have placed more orders than any other customer.
+The result format is in the following example.*/
+
+SELECT customer_number
+FROM Orders 
+GROUP BY customer_number 
+ORDER BY COUNT(customer_number) DESC
+LIMIT 1
+
+-- ALTERNATIVE SOLUTION: 
+With t1 AS(
+    select customer_number, count(*) as countNum
+    from Orders 
+    group by customer_number
+),
+ t2 AS(
+    select max(countNum) as maxNum
+    FROM t1 
+)
+Select customer_number
+from t1
+where countNum = (SELECT maxNum from t2)
+;
