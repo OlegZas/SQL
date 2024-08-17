@@ -173,3 +173,12 @@ FROM Logs l
 JOIN logs o on l.id = o.id+1 and l.num = o.num
 JOIN logs g on l.id = g.id +2 and l.num = g.num
 GROUP BY l.num
+
+/* 2. 
+Write a solution to find the employees who earn more than their managers. Return the result table in any order.
+The result format is in the following example. */
+
+
+SELECT e.name as Employee
+FROM Employee e 
+JOIN Employee e2 ON e.managerId = e2.id AND e.salary > e2.salary
