@@ -182,3 +182,22 @@ The result format is in the following example. */
 SELECT e.name as Employee
 FROM Employee e 
 JOIN Employee e2 ON e.managerId = e2.id AND e.salary > e2.salary
+
+/* 3. Write a solution to report all the duplicate emails. Note that it's guaranteed that the email field is not NULL.
+Return the result table in any order. The result format is in the following example. */ 
+
+SELECT email AS Email 
+FROM Person 
+group by email 
+having count(email)>1
+
+/* ALTERNATIVE 
+SELECT distinct email 
+FROM person p 
+WHERE EXISTS (
+    SELECT 1
+    FROM person pe
+    WHERE p.id <> pe.id -- Ensure we're not comparing the same person
+    AND p.email = pe.email -- Check for matching emails
+);
+*/
