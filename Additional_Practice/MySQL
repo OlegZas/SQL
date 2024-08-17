@@ -221,3 +221,11 @@ SELECT class
 FROM Courses 
 GROUP BY class 
 HAVING count(1) >= 5
+
+/* 6. Write a solution that will, for each user, return the number of followers. 
+Return the result table ordered by user_id in ascending order. */ 
+
+SELECT user_id, COUNT(1) as followers_count
+FROM Followers 
+GROUP BY user_id
+ORDER BY user_id
