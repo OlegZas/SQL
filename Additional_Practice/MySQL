@@ -229,3 +229,18 @@ SELECT user_id, COUNT(1) as followers_count
 FROM Followers 
 GROUP BY user_id
 ORDER BY user_id
+
+/* 8/20/2024
+#1. Write a solution to report the IDs of all the employees with missing information. The information of an employee is missing if: 
+The employee's name is missing, or
+The employee's salary is missing.
+Return the result table ordered by employee_id in ascending order. */
+
+SELECT M.employee_id
+FROM  
+  (SELECT * FROM Employees LEFT JOIN Salaries USING(employee_id)
+   UNION 
+   SELECT * FROM Employees RIGHT JOIN Salaries USING(employee_id))
+AS M
+WHERE M.salary IS NULL OR M.name IS NULL
+ORDER BY employee_id;
