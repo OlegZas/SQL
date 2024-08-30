@@ -256,10 +256,17 @@ GROUP BY sell_date
 ORDER BY sell_date 
 
 /* 8/29/2024 */ 
-/* # Write your MySQL query statement below
--- Write a solution to find all the pairs (actor_id, director_id) where the actor has cooperated with the director at least three times. */ 
+--1.  Write a solution to find all the pairs (actor_id, director_id) where the actor has cooperated with the director at least three times. */ 
 
 SELECT actor_id, director_id
 FROM ActorDirector
 GROUP BY actor_id, director_id
 HAVING count(1) >= 3;
+
+/* 2. Write a solution to swap the seat id of every two consecutive students. If the number of students is odd, the id of the last student is not swapped. */ 
+SELECT IF (id < (SELECT MAX(id) FROM Seat), -- check if id is less than max 
+            IF(id % 2 = 0, id - 1, id + 1), -- nested if; if above true then this. 
+            IF(id % 2 = 0, id - 1, id) -- if the outer if statetment is false, then this statetment 
+        ) AS id, student
+FROM Seat
+ORDER BY id;
