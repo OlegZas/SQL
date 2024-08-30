@@ -254,3 +254,12 @@ SELECT sell_date, COUNT(DISTINCT product) as num_sold, GROUP_CONCAT( DISTINCT pr
 FROM Activities a
 GROUP BY sell_date
 ORDER BY sell_date 
+
+/* 8/29/2024 */ 
+/* # Write your MySQL query statement below
+-- Write a solution to find all the pairs (actor_id, director_id) where the actor has cooperated with the director at least three times. */ 
+
+SELECT actor_id, director_id
+FROM ActorDirector
+GROUP BY actor_id, director_id
+HAVING count(1) >= 3;
