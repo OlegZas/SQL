@@ -52,7 +52,7 @@ VALUES
   ('A', '2021-01-07'),
   ('B', '2021-01-09');
 
-  
+  -- 9/3/2024
 --1. What is the total amount each customer spent at the restaurant?
 SELECT customer_id, sum(price)
 FROM dannys_diner.sales s
