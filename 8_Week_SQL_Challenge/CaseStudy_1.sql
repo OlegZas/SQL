@@ -58,3 +58,8 @@ SELECT customer_id, sum(price)
 FROM dannys_diner.sales s
 join dannys_diner.menu m on s.product_id = m.product_id 
 group by customer_id;
+
+-- 2. How many days has each customer visited the restaurant?
+SELECT customer_id, COUNT(DISTINCT order_date)
+FROM dannys_diner.sales s
+GROUP BY customer_id;
