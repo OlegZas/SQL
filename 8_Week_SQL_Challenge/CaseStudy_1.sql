@@ -63,3 +63,19 @@ group by customer_id;
 SELECT customer_id, COUNT(DISTINCT order_date)
 FROM dannys_diner.sales s
 GROUP BY customer_id;
+
+--3. What was the first item from the menu purchased by each customer?
+With Rank as
+(
+Select S.customer_id, 
+       M.product_name, 
+       S.order_date,
+       row_number() OVER (PARTITION BY S.Customer_ID Order by S.order_date) as rank
+From dannys_diner.menu m
+join dannys_diner.sales s
+On m.product_id = s.product_id
+group by S.customer_id, M.product_name,S.order_date
+)
+Select Customer_id, product_name
+From Rank
+Where rank = 1
