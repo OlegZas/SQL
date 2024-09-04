@@ -1,0 +1,1 @@
+This repository contains my solutions to the case studies. Various SQL dialects are used.
