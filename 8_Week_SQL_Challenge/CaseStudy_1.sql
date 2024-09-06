@@ -79,3 +79,33 @@ group by S.customer_id, M.product_name,S.order_date
 Select Customer_id, product_name
 From Rank
 Where rank = 1
+
+  -- 9/5/2024
+/*4. What is the most purchased item on the menu and how many times was it purchased by all customers?*/ 
+
+WITH most_purchased_item AS (
+  SELECT
+    s.product_id,
+    COUNT(s.product_id) AS total_purchases
+  FROM
+    dannys_diner.sales s
+  GROUP BY
+    s.product_id
+  ORDER BY
+    total_purchases DESC
+  LIMIT 1
+)
+SELECT
+  s.customer_id,
+  m.product_name,
+  COUNT(s.product_id) AS customer_purchases
+FROM
+  dannys_diner.sales s
+JOIN
+  most_purchased_item mpi ON s.product_id = mpi.product_id
+JOIN
+ dannys_diner.menu m ON s.product_id = m.product_id
+GROUP BY
+  s.customer_id, m.product_name
+ORDER BY
+  customer_purchases DESC;
