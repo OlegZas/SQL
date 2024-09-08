@@ -280,3 +280,12 @@ SET sex =
     CASE 
         WHEN sex = 'f' THEN 'm' ELSE 'f'
     END ;
+
+/*2. Write a solution to find for each user, the join date and the number of orders they made as a buyer in 2019.
+Return the result table in any order. */
+
+SELECT u.user_id as buyer_id, u.join_date, COUNT(o.item_id) as Orders_in_2019 
+FROM USERS u
+LEFT JOIN Orders o ON u.user_id = o.buyer_id AND year(o.order_date)='2019'
+GROUP BY u.user_id
+;
