@@ -59,6 +59,7 @@ SELECT employee_id, CASE
 FROM Employees 
 ORDER BY employee_id;
 
+-- 11/20/24
 --6. 
 /* 
 Write a solution to find the second highest distinct salary from the Employee table. If there is no second highest salary, return null (return None in Pandas).
@@ -68,3 +69,15 @@ The result format is in the following example.
 SELECT MAX(salary) SecondHighestSalary 
 FROM Employee
 WHERE salary NOT IN(SELECT MAX(salary) FROM Employee) 
+
+
+-7. 
+/*Write a solution to find the rank of the scores. The ranking should be calculated according to the following rules:
+The scores should be ranked from the highest to the lowest.
+If there is a tie between two scores, both should have the same ranking.
+After a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no holes between ranks.
+Return the result table ordered by score in descending order.
+The result format is in the following example.*/
+
+SELECT score, DENSE_RANK()OVER(ORDER BY Score desc) AS `rank`
+FROM Scores 
