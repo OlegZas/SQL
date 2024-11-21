@@ -81,3 +81,13 @@ The result format is in the following example.*/
 
 SELECT score, DENSE_RANK()OVER(ORDER BY Score desc) AS `rank`
 FROM Scores 
+
+--8. 
+/*Write a solution to report all the duplicate emails. Note that it's guaranteed that the email field is not NULL.
+Return the result table in any order.
+The result format is in the following example.*/
+
+SELECT Email
+FROM Person 
+GROUP BY Email
+Having COUNT(1) > 1;
