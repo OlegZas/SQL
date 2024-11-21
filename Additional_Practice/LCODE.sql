@@ -58,3 +58,13 @@ SELECT employee_id, CASE
                     END AS bonus 
 FROM Employees 
 ORDER BY employee_id;
+
+--6. 
+/* 
+Write a solution to find the second highest distinct salary from the Employee table. If there is no second highest salary, return null (return None in Pandas).
+The result format is in the following example.
+*/
+
+SELECT MAX(salary) SecondHighestSalary 
+FROM Employee
+WHERE salary NOT IN(SELECT MAX(salary) FROM Employee) 
