@@ -124,3 +124,18 @@ The result format is in the following example.*/
 SELECT date_id, make_name , COUNT(DISTINCT lead_id) AS unique_leads, COUNT(DISTINCT partner_id) AS unique_partners 
 FROM DailySales
 GROUP BY date_id, make_name;
+
+--12. 
+/*The cancellation rate is computed by dividing the number of canceled (by client or driver) requests with unbanned users by the total number of requests with unbanned users on that day.
+Write a solution to find the cancellation rate of requests with unbanned users (both client and driver must not be banned) each day between "2013-10-01" and "2013-10-03". Round Cancellation Rate to two decimal points.
+Return the result table in any order.
+The result format is in the following example.*/
+
+SELECT request_at AS DAY,  ROUND(sum(case when status like '%cancelled%' then 1 else 0 end )/ count(*),2) AS `Cancellation Rate`
+FROM Trips t
+INNER JOIN USERS u ON u.users_id = client_id AND u.role = 'client' AND u.banned = 'No'
+INNER JOIN USERS m ON m.users_id = driver_id AND m.role = 'driver ' AND  m.banned ='No'
+-- Inner JOIN Users u ON (CASE 
+--                             WHEN u.role = "client" THEN t.client_id = users_id else t.driver_id = u.users_id end) 
+GROUP BY request_at                        
+HAVING request_at BETWEEN '2013-10-01' AND '2013-10-03'
