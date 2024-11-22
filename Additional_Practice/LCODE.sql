@@ -93,6 +93,7 @@ GROUP BY Email
 Having COUNT(1) > 1;
 
 -- 11/21/24
+--9.
 /*Write a solution to report the Capital gain/loss for each stock.
 The Capital gain/loss of a stock is the total gain or loss after buying and selling the stock one or many times.
 Return the result table in any order.
@@ -103,3 +104,13 @@ SELECT stock_name,
 		   ELSE -price END) AS capital_gain_loss
 FROM Stocks
 GROUP BY stock_name
+	
+--10.
+/*Write a solution to report the movies with an odd-numbered ID and a description that is not "boring".
+Return the result table ordered by rating in descending order.
+The result format is in the following example.*/
+
+SELECT *
+FROM Cinema 
+WHERE description <> 'boring' AND id%2 != 0
+ORDER BY rating desc 
