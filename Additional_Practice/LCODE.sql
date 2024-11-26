@@ -139,3 +139,26 @@ INNER JOIN USERS m ON m.users_id = driver_id AND m.role = 'driver ' AND  m.banne
 --                             WHEN u.role = "client" THEN t.client_id = users_id else t.driver_id = u.users_id end) 
 GROUP BY request_at                        
 HAVING request_at BETWEEN '2013-10-01' AND '2013-10-03'
+
+--11/25/24
+-- 13.
+/*Write a solution to find the ids of products that are both low fat and recyclable. Return the result table in any order. The result format is in the following example.*/
+
+SELECT product_id as product_id
+FROM Products p
+WHERE low_fats = 'Y' AND recyclable = 'Y'
+--14. 
+/*Find the names of the customer that are not referred by the customer with id = 2.
+Return the result table in any order.
+The result format is in the following example.*/
+
+SELECT name 
+FROM Customer
+WHERE referee_id != 2 OR referee_id is null
+ORDER BY id
+
+--15. 
+/*A country is big if: it has an area of at least three million (i.e., 3000000 km2), or it has a population of at least twenty-five million (i.e., 25000000). Write a solution to find the name, population, and area of the big countries. Return the result table in any order. The result format is in the following example.*/
+SELECT name, population, area 
+FROM World 
+WHERE area >= 3000000 OR population >= 25000000
