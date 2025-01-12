@@ -7,3 +7,12 @@ SELECT project_id, round(SUM(experience_years )/COUNT(e.employee_id ),2) AS aver
 FROM Project p 
 INNER JOIN Employee e ON p.employee_id = e.employee_id
 GROUP BY project_id
+
+/*2. Write a solution to find the average selling price for each product. average_price should be rounded to 2 decimal places. If a product does not have any sold units, its average selling price is assumed to be 0.
+Return the result table in any order.
+The result format is in the following example.*/
+-- price * unites sold) / units 
+SELECT p.product_id, IFNULL(round((sum(price * units) /sum(units)),2),0) as average_price 
+FROM  prices p 
+left join UnitsSold s ON p.product_id= s.product_id  AND purchase_date  between start_date AND end_date 
+GROUP BY p.product_id
