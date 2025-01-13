@@ -16,3 +16,13 @@ SELECT p.product_id, IFNULL(round((sum(price * units) /sum(units)),2),0) as aver
 FROM  prices p 
 left join UnitsSold s ON p.product_id= s.product_id  AND purchase_date  between start_date AND end_date 
 GROUP BY p.product_id
+
+-- 1/12/25
+/* 3. Write a solution to find the percentage of the users registered in each contest rounded to two decimals. Return the result table ordered by percentage in descending order. In case of a tie, order it by contest_id in ascending order. The result format is in the following example.
+*/
+
+SELECT contest_id, ROUND(count(DISTINCT r.user_id) / (select count(u.user_id) FROM Users u) * 100,2) AS percentage
+FROM USERS u
+INNER JOIN REGISTER r ON u.user_id = r.user_id 
+GROUP BY contest_id
+ORDER BY percentage desc, contest_id asc
