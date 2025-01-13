@@ -47,3 +47,21 @@ The result format is in the following example.*/
 SELECT query_name, ROUND(sum(rating / position) / count(1),2) as quality, ROUND(SUM(case when rating < 3 then 1 else 0 end) / count(1)*100,2) as poor_query_percentage  
 FROM Queries 
 GROUP BY query_name
+
+/*3
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| country       | varchar |
+| state         | enum    |
+| amount        | int     |
+| trans_date    | date    |
++---------------+---------+
+Write an SQL query to find for each month and country, the number of transactions and their total amount, the number of approved transactions and their total amount.
+Return the result table in any order.*/
+
+
+SELECT DATE_FORMAT(trans_date, '%Y-%m') as month, country, COUNT(1) AS trans_count, SUM(CASE WHEN state = 'approved' then 1 else 0 end) AS approved_count, SUM(amount) as trans_total_amount, SUM(CASE WHEN state = 'approved' then amount else 0 end) as approved_total_amount
+FROM Transactions 
+GROUP BY DATE_FORMAT(trans_date, '%Y - %m')  , country ;
