@@ -100,3 +100,12 @@ GROUP BY class
 HAVING count(class) >=5 
 ORDER BY count(class)
 
+-- 2. 
+/*Write a solution that will, for each user, return the number of followers.
+Return the result table ordered by user_id in ascending order.
+The result format is in the following example.*/
+
+SELECT UPPER(user_id), count(1) AS followers_count 
+FROM Followers 
+GROUP BY user_id
+ORDER BY user_id ASC
