@@ -105,7 +105,7 @@ ORDER BY count(class)
 Return the result table ordered by user_id in ascending order.
 The result format is in the following example.*/
 
-SELECT UPPER(user_id), count(1) AS followers_count 
+SELECT user_id, count(1) AS followers_count 
 FROM Followers 
 GROUP BY user_id
 ORDER BY user_id ASC
