@@ -88,3 +88,15 @@ FROM
 WHERE 
     DATEDIFF('2019-07-27', activity_date) < 30 AND DATEDIFF('2019-07-27', activity_date)>=0
 GROUP BY 1
+
+/* 1/16/25
+1. Write a solution to find all the classes that have at least five students.
+Return the result table in any order.
+The result format is in the following example.*/
+
+SELECT Upper(class) AS CLASS
+FROM Courses
+GROUP BY class
+HAVING count(class) >=5 
+ORDER BY count(class)
+
