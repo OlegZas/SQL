@@ -113,3 +113,17 @@ GROUP BY
   s.customer_id, m.product_name
 ORDER BY
   customer_purchases DESC;
+
+-- 3/10/25
+--5. Which item was the most popular for each customer?
+
+-- sold the most; group by customer 
+-- SELECT PRODUCT_NAME WHERE 
+WITH ranking AS(
+  SELECT CUSTOMER_ID, PRODUCT_ID, RANK()OVER(PARTITION BY CUSTOMER_ID ORDER BY COUNT(PRODUCT_ID )DESC) AS RANKS, COUNT(PRODUCT_ID) AS COUNTING
+  FROM dannys_diner.SALES 
+  GROUP BY CUSTOMER_ID, PRODUCT_ID
+)
+SELECT M.PRODUCT_NAME, customer_id, COUNTING
+FROM RANKING R
+INNER JOIN dannys_diner.MENU M ON R.PRODUCT_ID = M.PRODUCT_ID AND RANKS = 1
