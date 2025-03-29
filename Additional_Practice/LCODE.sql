@@ -162,3 +162,19 @@ ORDER BY id
 SELECT name, population, area 
 FROM World 
 WHERE area >= 3000000 OR population >= 25000000
+
+--16.# Write your MySQL query statement below
+/* Write a solution to find the prices of all products on 2019-08-16. Assume the price of all products before any change is 10.
+Return the result table in any order.
+The result format is in the following example.
+*/
+SELECT product_id,
+       COALESCE(
+           (SELECT new_price 
+            FROM PRODUCTS P2
+            WHERE P2.product_id = P.product_id 
+              AND P2.change_date <= DATE '2019-08-16'
+            ORDER BY P2.change_date DESC
+            LIMIT 1), 10) AS price
+FROM PRODUCTS P
+GROUP BY product_id;
