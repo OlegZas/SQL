@@ -123,7 +123,7 @@ GROUP BY customer_id
 HAVING COUNT(distinct product_key) = (SELECT COUNT(product_key) FROM Product)
 
 -- 4/21/2025
--- # Write your MySQL query statement below
+-- #4  Write your MySQL query statement below
 /*
 A single number is a number that appeared only once in the MyNumbers table.
 Find the largest single number. If there is no single number, report null.
