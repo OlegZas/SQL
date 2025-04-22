@@ -121,3 +121,23 @@ SELECT  customer_id
 FROM Customer 
 GROUP BY customer_id
 HAVING COUNT(distinct product_key) = (SELECT COUNT(product_key) FROM Product)
+
+-- 4/21/2025
+-- # Write your MySQL query statement below
+/*
+A single number is a number that appeared only once in the MyNumbers table.
+Find the largest single number. If there is no single number, report null.
+The result format is in the following example.
+*/
+
+-- 1. find  (unique)
+-- 2. get max unique 
+
+SELECT MAX(num) AS NUM      
+FROM MYNUMBERS M 
+WHERE NUM NOT IN (
+    SELECT NUM
+    FROM MYNUMBERS M2   
+    GROUP BY NUM
+    HAVING COUNT(NUM)>1
+)
