@@ -216,3 +216,28 @@ UPDATE OZPRACTICE.DETAILS SET EMAIL = 'mystery.man007@zoho.com' WHERE SN = 9;
 -- Exercise 1: Extract Domain from Email
 SELECT REGEXP_EXTRACT(email, r'@(.+)$') AS domain
 FROM OZPRACTICE.DETAILS ;
+
+-- 4/26/2025
+/* If the customer's preferred delivery date is the same as the order date, then the order is called immediate; otherwise, it is called scheduled.
+The first order of a customer is the order with the earliest order date that the customer made. It is guaranteed that a customer has precisely one first order.
+Write a solution to find the percentage of immediate orders in the first orders of all customers, rounded to 2 decimal places.
+The result format is in the following example.*/
+
+-- case where order_date = customer_pref_delivery_date = 'immediate' else 'scheduled'
+-- Write a solution to find the percentage of immediate orders in the first orders of all customers, rounded to 2 decimal places.
+-- row number order by order_date .. select rn = 1 .. then count(* where rn = 1) / count(*)
+
+
+WITH FILTERFIRST AS (
+    SELECT *, 
+           ROW_NUMBER() OVER (PARTITION BY CUSTOMER_ID ORDER BY ORDER_DATE ASC) AS RN 
+    FROM DELIVERY 
+)
+SELECT ROUND(
+    COUNT(CASE WHEN ORDER_DATE = customer_pref_delivery_date THEN 1 END)  
+    / COUNT(*) * 100, 
+    2
+) AS immediate_percentage 
+FROM FILTERFIRST 
+WHERE RN = 1;
+
