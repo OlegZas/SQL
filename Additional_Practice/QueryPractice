@@ -199,6 +199,7 @@ SET CITY = 'OLEGLAND'
 WHERE CITY = 'GAZIABAD';
 
 --------------------------------------------------------------------------
+4/25/25
 ALTER TABLE OZPRACTICE.DETAILS 
 ADD COLUMN EMAIL STRING;
 
