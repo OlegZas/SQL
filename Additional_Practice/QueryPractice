@@ -218,7 +218,7 @@ SELECT REGEXP_EXTRACT(email, r'@(.+)$') AS domain
 FROM OZPRACTICE.DETAILS ;
 
 -- 4/26/2025
-/* If the customer's preferred delivery date is the same as the order date, then the order is called immediate; otherwise, it is called scheduled.
+/*1. If the customer's preferred delivery date is the same as the order date, then the order is called immediate; otherwise, it is called scheduled.
 The first order of a customer is the order with the earliest order date that the customer made. It is guaranteed that a customer has precisely one first order.
 Write a solution to find the percentage of immediate orders in the first orders of all customers, rounded to 2 decimal places.
 The result format is in the following example.*/
@@ -241,3 +241,14 @@ SELECT ROUND(
 FROM FILTERFIRST 
 WHERE RN = 1;
 
+# 2. Write your MySQL query statement below
+/*For this problem, we will consider a manager an employee who has at least 1 other employee reporting to them.
+Write a solution to report the ids and the names of all managers, the number of employees who report directly to them, and the average age of the reports rounded to the nearest integer.
+Return the result table ordered by employee_id.
+The result format is in the following example.*/
+
+SELECT E2.employee_id, E2.name, COUNT(1) AS reports_count , ROUND(SUM(E.AGE) / COUNT(E.AGE),0) AS average_age 
+FROM EMPLOYEES E 
+ JOIN EMPLOYEES E2 ON E2.EMPLOYEE_ID = E.REPORTS_TO
+GROUP BY E2.EMPLOYEE_ID, E2.NAME
+ORDER BY employee_id
