@@ -282,3 +282,16 @@ The result format is in the following example.*/
 SELECT *, IF (X+Y > Z AND Z + Y > X AND X+Z > Y, 'Yes', 'No') AS triangle
 FROM TRIANGLE 
  
+# Write your MySQL query statement below
+/* Write a solution to select the product id, year, quantity, and price for the first year of every product sold. If any product is bought multiple times in its first year, return all sales separately.
+Return the resulting table in any order.
+The result format is in the following example.*/
+
+-- 1. Group by product_id, having min(year)
+select s.product_id,f.first_year,s.quantity,s.price
+ from sales s
+join 
+(select s.product_id,min(s.`year`) first_year 
+from sales s
+group by s.product_id) f 
+on s.product_id = f.product_id and s.`year` = f.first_year
