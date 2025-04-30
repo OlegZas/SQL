@@ -300,3 +300,26 @@ where s.year = (select min(s2.year)
                 FROM SALES S2
                 WHERE S2.PRODUCT_ID = S.PRODUCT_ID
                 GROUP BY PRODUCT_ID)
+-- 4/29/25
+/* Write a solution to report the fraction of players that logged in again on the day after the day they first logged in, rounded to 2 decimal places. In other words, you need to count the number of players that logged in for at least two consecutive days starting from their first login date, then divide that number by the total number of players.
+
+The result format is in the following example.*/ 
+
+-- 1. find min(event_date) for each group (payer_id)
+-- 2. round to 2 decimal
+-- 3. count : case where loged in 1, else 0 
+WITH FirstLogin AS (
+    SELECT PLAYER_ID, MIN(EVENT_DATE) AS First_Date
+    FROM ACTIVITY
+    GROUP BY PLAYER_ID
+),
+NextDayLogin AS (
+    SELECT f.PLAYER_ID
+    FROM FirstLogin f
+    JOIN ACTIVITY a 
+      ON f.PLAYER_ID = a.PLAYER_ID 
+     AND a.EVENT_DATE = DATE_ADD(f.First_Date, INTERVAL 1 DAY)
+)
+SELECT ROUND(COUNT(DISTINCT n.PLAYER_ID) / COUNT(DISTINCT f.PLAYER_ID), 2) AS fraction
+FROM FirstLogin f
+LEFT JOIN NextDayLogin n ON f.PLAYER_ID = n.PLAYER_ID;
