@@ -323,3 +323,13 @@ NextDayLogin AS (
 SELECT ROUND(COUNT(DISTINCT n.PLAYER_ID) / COUNT(DISTINCT f.PLAYER_ID), 2) AS fraction
 FROM FirstLogin f
 LEFT JOIN NextDayLogin n ON f.PLAYER_ID = n.PLAYER_ID;
+
+--2. 
+# Write your MySQL query statement below
+/*Write a solution to fix the names so that only the first character is uppercase and the rest are lowercase.
+Return the result table ordered by user_id.
+The result format is in the following example.*/
+
+SELECT user_id,CONCAT(LEFT(UPPER(NAME),1),RIGHT(LOWER(NAME), LENGTH(NAME)-1)) AS name
+FROM USERS
+ORDER BY user_id
