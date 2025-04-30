@@ -288,10 +288,15 @@ Return the resulting table in any order.
 The result format is in the following example.*/
 
 -- 1. Group by product_id, having min(year)
-select s.product_id,f.first_year,s.quantity,s.price
- from sales s
-join 
-(select s.product_id,min(s.`year`) first_year 
-from sales s
-group by s.product_id) f 
-on s.product_id = f.product_id and s.`year` = f.first_year
+SELECT s.product_id, s.year as first_year, s.quantity, s.price 
+FROM SALES S
+INNER JOIN (SELECT S2.PRODUCT_ID, MIN(S2.YEAR) AS FIRSTYEAR
+            FROM SALES S2 
+            GROUP BY S2.PRODUCT_ID) S2 ON S2.PRODUCT_ID = S.PRODUCT_ID AND FIRSTYEAR = S.YEAR 
+-- SLOWER: 
+SELECT s.product_id, s.year as first_year, s.quantity, s.price 
+FROM SALES S
+where s.year = (select min(s2.year)
+                FROM SALES S2
+                WHERE S2.PRODUCT_ID = S.PRODUCT_ID
+                GROUP BY PRODUCT_ID)
