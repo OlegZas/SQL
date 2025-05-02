@@ -333,3 +333,24 @@ The result format is in the following example.*/
 SELECT user_id,CONCAT(LEFT(UPPER(NAME),1),RIGHT(LOWER(NAME), LENGTH(NAME)-1)) AS name
 FROM USERS
 ORDER BY user_id
+
+5/2/25
+# Write your MySQL query statement below
+/*Find all numbers that appear at least three times consecutively.
+Return the result table in any order.
+The result format is in the following example.*/
+
+-- num of the l.id  = num of the l.id +1 and = num l.id +2 
+
+with cte as (
+select id, num
+from logs 
+),
+cte2 as ( 
+    select id, num
+from logs 
+)
+select distinct l.num as ConsecutiveNums 
+from logs l
+inner join cte c on c.id = l.id +1 and c.num = l.num 
+inner join cte2 ct on ct.id = l.id +2 and ct.num = l.num
