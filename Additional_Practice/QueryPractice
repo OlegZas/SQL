@@ -342,15 +342,8 @@ The result format is in the following example.*/
 
 -- num of the l.id  = num of the l.id +1 and = num l.id +2 
 
-with cte as (
-select id, num
-from logs 
-),
-cte2 as ( 
-    select id, num
-from logs 
-)
+
 select distinct l.num as ConsecutiveNums 
 from logs l
-inner join cte c on c.id = l.id +1 and c.num = l.num 
-inner join cte2 ct on ct.id = l.id +2 and ct.num = l.num
+inner join logs c on c.id = l.id +1 and c.num = l.num 
+inner join logs ct on ct.id = l.id +2 and ct.num = l.num
