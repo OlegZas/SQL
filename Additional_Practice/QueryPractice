@@ -359,3 +359,13 @@ FROM EMPLOYEES E
 RIGHT JOIN EMPLOYEES E2 ON E2.MANAGER_ID = E.EMPLOYEE_ID 
 WHERE e2.SALARY < 30000 AND E.EMPLOYEE_ID IS NULL AND E2.MANAGER_ID IS NOT NULL
 ORDER BY E2.EMPLOYEE_ID
+
+-- 5/5/2025
+# Write your MySQL query statement below
+/*Write a solution to find the patient_id, patient_name, and conditions of the patients who have Type I Diabetes. Type I Diabetes always starts with DIAB1 prefix.
+Return the result table in any order.
+The result format is in the following example.*/
+
+SELECT patient_id, patient_name, conditions 
+FROM Patients p
+WHERE conditions  LIKE '% DIAB1%' OR conditions LIKE 'DIAB1%'
