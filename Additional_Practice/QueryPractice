@@ -347,3 +347,15 @@ select distinct l.num as ConsecutiveNums
 from logs l
 inner join logs c on c.id = l.id +1 and c.num = l.num 
 inner join logs ct on ct.id = l.id +2 and ct.num = l.num
+
+-- 5/4/25
+# Write your MySQL query statement below
+/* Find the IDs of the employees whose salary is strictly less than $30000 and whose manager left the company. When a manager leaves the company, their information is deleted from the Employees table, but the reports still have their manager_id set to the manager that left.
+Return the result table ordered by employee_id.
+The result format is in the following example.*/
+
+SELECT E2.employee_id
+FROM EMPLOYEES E
+RIGHT JOIN EMPLOYEES E2 ON E2.MANAGER_ID = E.EMPLOYEE_ID 
+WHERE e2.SALARY < 30000 AND E.EMPLOYEE_ID IS NULL AND E2.MANAGER_ID IS NOT NULL
+ORDER BY E2.EMPLOYEE_ID
