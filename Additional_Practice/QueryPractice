@@ -394,3 +394,14 @@ The result format is in the following example.*/
 DELETE p1 FROM Person p1
 JOIN Person p2 
 ON p1.email = p2.email AND p1.id > p2.id;
+
+5/11/25 
+/*Write a solution to find the second highest distinct salary from the Employee table. If there is no second highest salary, return null (return None in Pandas).
+The result format is in the following example.*/
+
+-- 1. SLEECT HIGHEST THEN SELECT MAX THAT IS NOT IN HIGHEST 
+SELECT MAX(SALARY) AS SecondHighestSalary 
+FROM EMPLOYEE E 
+WHERE SALARY NOT IN (
+SELECT MAX(SALARY)
+FROM EMPLOYEE E )
