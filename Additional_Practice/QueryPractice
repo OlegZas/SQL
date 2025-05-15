@@ -418,3 +418,16 @@ SELECT CASE
         END AS id, student
 FROM SEAT S 
 order by id asc
+
+--5/14/25
+# Write your MySQL query statement below
+/*Write a solution to find for each date the number of different products sold and their names.
+The sold products names for each date should be sorted lexicographically.
+Return the result table ordered by sell_date.
+The result format is in the following example.*/
+
+SELECT sell_date, COUNT(distinct product) AS num_sold, 
+       group_concat(distinct product order by product asc separator ',') as products 
+FROM ACTIVITIES 
+GROUP BY SELL_DATE
+ORDER BY SELL_DATE, PRODUCT
