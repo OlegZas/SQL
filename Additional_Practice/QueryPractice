@@ -458,3 +458,14 @@ union all
 select 'High Salary', 0
 )
 select category, sum(count) as accounts_count from CTE_Category group by category
+
+5/16/25
+/*Write a solution to get the names of products that have at least 100 units ordered in February 2020 and their amount.
+Return the result table in any order.
+The result format is in the following example.*/
+
+SELECT P.product_name, SUM(UNIT) AS unit 
+FROM PRODUCTS P
+INNER JOIN ORDERS O ON P.PRODUCT_ID = O.PRODUCT_ID AND EXTRACT(MONTH FROM ORDER_DATE) = 2 AND EXTRACT(YEAR FROM ORDER_DATE) = 2020
+GROUP BY O.PRODUCT_ID
+HAVING SUM(UNIT) >= 100
