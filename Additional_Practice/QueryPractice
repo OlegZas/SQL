@@ -480,3 +480,22 @@ SELECT ROUND(MIN(LAT_N),4)
 FROM STATION 
 WHERE LAT_N > 38.7780
 ;
+
+-- 5/18/25
+/*There is a queue of people waiting to board a bus. However, the bus has a weight limit of 1000 kilograms, so there may be some people who cannot board.
+Write a solution to find the person_name of the last person that can fit on the bus without exceeding the weight limit. The test cases are generated such that the first person does not exceed the weight limit.
+Note that only one person can board the bus at any given turn.
+The result format is in the following example.*/
+
+-- 1000
+-- sum of all < 1000
+-- loop 
+-- Note: groupping here makes summing q2 possible. ex: q1.trn1 will include q2. tr1,tr2,tr3,tr4 etc whose sum is up to 1000. Then ordered and limited to get 1 person. 
+
+SELECT q.person_name
+FROM QUEUE Q
+INNER JOIN QUEUE Q2 ON Q.TURN >= Q2.TURN 
+GROUP BY Q.TURN 
+HAVING SUM(q2.WEIGHT)<=1000
+ORDER BY SUM(q2.WEIGHT) desc 
+LIMIT 1
