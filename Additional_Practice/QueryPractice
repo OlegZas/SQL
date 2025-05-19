@@ -499,3 +499,27 @@ GROUP BY Q.TURN
 HAVING SUM(q2.WEIGHT)<=1000
 ORDER BY SUM(q2.WEIGHT) desc 
 LIMIT 1
+
+-- 5/19/2025
+/*
+Find the name of the user who has rated the greatest number of movies. In case of a tie, return the lexicographically smaller user name.
+Find the movie name with the highest average rating in February 2020. In case of a tie, return the lexicographically smaller movie name.
+The result format is in the following example. */
+
+-- can use unions.
+-- 1. user highest count 
+
+(SELECT U.NAME AS results -- , COUNT(1)
+FROM MOVIERATING M
+INNER JOIN USERS U ON U.USER_ID = M.USER_ID 
+GROUP BY M.USER_ID, NAME
+ORDER BY COUNT(1) DESC, NAME 
+LIMIT 1 )
+UNION  ALL
+(SELECT title       
+FROM MOVIERATING M 
+INNER JOIN Movies M2 ON M.MOVIE_ID = M2.MOVIE_ID 
+WHERE CREATED_AT BETWEEN '2020-02-01' AND '2020-02-29'
+GROUP BY M.MOVIE_ID
+ORDER BY SUM(RATING) / COUNT(1) DESC, TITLE
+LIMIT 1)
