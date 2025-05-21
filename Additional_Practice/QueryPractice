@@ -523,3 +523,15 @@ WHERE CREATED_AT BETWEEN '2020-02-01' AND '2020-02-29'
 GROUP BY M.MOVIE_ID
 ORDER BY SUM(RATING) / COUNT(1) DESC, TITLE
 LIMIT 1)
+
+--5/20/25
+/*Write a solution to report the sum of all total investment values in 2016 tiv_2016, for all policyholders who:
+have the same tiv_2015 value as one or more other policyholders, and
+are not located in the same city as any other policyholder (i.e., the (lat, lon) attribute pairs must be unique).
+Round tiv_2016 to two decimal places.
+The result format is in the following example.*/
+
+SELECT ROUND(SUM(I.TIV_2016),2) AS tiv_2016 
+FROM INSURANCE I
+LEFT JOIN INSURANCE I2 ON I2.LAT = I.LAT AND I2.LON = I.LON AND I2.PID != I.PID
+WHERE I.TIV_2015 IN(SELECT TIV_2015 FROM INSURANCE GROUP BY TIV_2015 HAVING COUNT(1) > 1) AND I2.PID IS NULL
