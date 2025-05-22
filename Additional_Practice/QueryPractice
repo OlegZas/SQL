@@ -535,3 +535,15 @@ SELECT ROUND(SUM(I.TIV_2016),2) AS tiv_2016
 FROM INSURANCE I
 LEFT JOIN INSURANCE I2 ON I2.LAT = I.LAT AND I2.LON = I.LON AND I2.PID != I.PID
 WHERE I.TIV_2015 IN(SELECT TIV_2015 FROM INSURANCE GROUP BY TIV_2015 HAVING COUNT(1) > 1) AND I2.PID IS NULL
+
+-- 5/21/25
+# Write your MySQL query statement below
+/*Write a solution to find the users who have valid emails.
+A valid e-mail has a prefix name and a domain where:
+The prefix name is a string that may contain letters (upper or lower case), digits, underscore '_', period '.', and/or dash '-'. The prefix name must start with a letter.
+The domain is '@leetcode.com'.
+Return the result table in any order.
+The result format is in the following example.*/
+SELECT *
+FROM Users
+WHERE mail REGEXP '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com';
