@@ -564,3 +564,27 @@ FROM
 WHERE
   mail REGEXP '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com$';
 
+-- 5/29/25
+/*Write a solution to find the people who have the most friends and the most friends number.
+The test cases are generated so that only one person has the most friends.
+The result format is in the following example.
+ */
+SELECT 
+    id,
+    (IFNULL(sent_friends, 0) + IFNULL(received_friends, 0)) AS num
+FROM (
+    SELECT 
+        id,
+        SUM(CASE WHEN id = REQUESTER_ID THEN 1 ELSE 0 END) AS sent_friends,
+        SUM(CASE WHEN id = ACCEPTER_ID THEN 1 ELSE 0 END) AS received_friends
+    FROM (
+        SELECT REQUESTER_ID AS id FROM RequestAccepted
+        UNION 
+        SELECT ACCEPTER_ID AS id FROM RequestAccepted
+    ) AS all_ids
+    LEFT JOIN RequestAccepted R
+        ON R.REQUESTER_ID = id OR R.ACCEPTER_ID = id
+    GROUP BY id
+) AS friends_count
+ORDER BY num DESC
+LIMIT 1;
