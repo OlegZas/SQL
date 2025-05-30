@@ -588,3 +588,23 @@ FROM (
 ) AS friends_count
 ORDER BY num DESC
 LIMIT 1;
+
+
+5/30/25
+/*A company's executives are interested in seeing who earns the most money in each of the company's departments. A high earner in a department is an employee who has a salary in the top three unique salaries for that department.
+Write a solution to find the employees who are high earners in each of the departments.
+Return the result table in any order.
+The result format is in the following example.*/
+
+-- group by department 
+-- max salary - top 3 
+WITH RANKED AS (
+SELECT 
+    name, DEPARTMENTID, ID, SALARY,
+    DENSE_RANK()OVER(PARTITION BY DEPARTMENTID ORDER BY SALARY DESC) AS RANKING
+FROM EMPLOYEE 
+)
+SELECT D.NAME AS Department, r.name as Employee, R.salary as Salary
+FROM RANKED R
+INNER JOIN DEPARTMENT D ON D.ID=R.DEPARTMENTID
+WHERE RANKING <=3 
