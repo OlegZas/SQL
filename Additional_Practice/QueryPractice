@@ -620,3 +620,24 @@ Return the result table ordered by user_id in ascending order.*/
 SELECT *
 FROM USERS U 
 WHERE EMAIL REGEXP'^[a-zA-Z0-9_]+@[a-zA-Z]+\\.com$' -- + means one or more ... \\ is used before a dot to denote the actual dot 
+
+/*2. 
+Write a solution to find the sum of amounts for odd and even transactions for each day. If there are no odd or even transactions for a specific date, display as 0.
+Return the result table ordered by transaction_date in ascending order.
+The result format is in the following example.*/
+
+SELECT 
+    transaction_date,
+        sum(CASE
+        WHEN 
+            amount %2 <> 0 THEN amount
+        else 0
+    END) AS odd_sum,
+    sum(CASE 
+        WHEN 
+            amount %2=0 THEN amount
+        else 0
+    end) as even_sum
+FROM TRANSACTIONS T
+GROUP BY TRANSACTION_DATE 
+order by transaction_date asc
