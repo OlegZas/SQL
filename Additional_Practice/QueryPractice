@@ -641,3 +641,21 @@ SELECT
 FROM TRANSACTIONS T
 GROUP BY TRANSACTION_DATE 
 order by transaction_date asc
+
+6/2/25
+/*Write a solution to find the students who have shown improvement. A student is considered to have shown improvement if they meet both of these conditions:
+Have taken exams in the same subject on at least two different dates
+Their latest score in that subject is higher than their first score
+Return the result table ordered by student_id, subject in ascending order.
+The result format is in the following example.*/
+with scores2 as (
+SELECT 
+    student_id, subject,
+    FIRST_VALUE(SCORE)OVER(PARTITION BY STUDENT_ID, SUBJECT ORDER BY EXAM_DATE ASC) AS first_score,
+    FIRST_VALUE(SCORE) OVER(PARTITION BY STUDENT_ID, SUBJECT ORDER BY EXAM_DATE DESC) AS latest_score
+FROM SCORES 
+)
+SELECT DISTINCT student_id, subject,first_score, latest_score
+FROM SCORES2
+WHERE latest_score > first_score
+ORDER BY student_id, subject 
