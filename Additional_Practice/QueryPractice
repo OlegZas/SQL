@@ -659,3 +659,29 @@ SELECT DISTINCT student_id, subject,first_score, latest_score
 FROM SCORES2
 WHERE latest_score > first_score
 ORDER BY student_id, subject 
+
+--6/3/25
+/*A subscription service wants to analyze user behavior patterns. The company offers a 7-day free trial, after which users can subscribe to a paid plan or cancel. Write a solution to:
+Find users who converted from free trial to paid subscription
+Calculate each user's average daily activity duration during their free trial period (rounded to 2 decimal places)
+Calculate each user's average daily activity duration during their paid subscription period (rounded to 2 decimal places)
+Return the result table ordered by user_id in ascending order.
+The result format is in the following example.*/
+
+WITH CTE AS (
+SELECT ROUND(AVG(ACTIVITY_DURATION),2) AS trial_avg_duration , USER_ID
+FROM USERACTIVITY U2
+WHERE ACTIVITY_TYPE = 'free_trial'
+GROUP BY USER_ID
+), CTED AS
+(SELECT ROUND(AVG(ACTIVITY_DURATION),2) AS paid_avg_duration , U2.USER_ID
+FROM USERACTIVITY U2
+WHERE ACTIVITY_TYPE = 'paid'
+GROUP BY U2.USER_ID)
+select U.user_id, trial_avg_duration, paid_avg_duration 
+from UserActivity u 
+INNER JOIN CTE ON CTE.USER_ID = U.USER_ID
+INNER JOIN CTED ON CTED.USER_ID = U.USER_ID
+where U.user_id in(SELECT user_id FROM UserActivity where activity_type = 'free_trial')
+    and U.user_id in(SELECT user_id FROM UserActivity where activity_type = 'paid')
+GROUP BY U.USER_ID
