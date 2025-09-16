@@ -12,6 +12,14 @@ CREATE TABLE ozSQL_AWS_RDS.users (
     signup_date DATE
 );
 
+CREATE TABLE ozSQL_AWS_RDS.users2 (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    country VARCHAR(50),
+    signup_date DATE
+);
+
 INSERT INTO ozSQL_AWS_RDS.users (user_id, name, email, country, signup_date) VALUES
 (1, 'John Doe', 'john.doe@example.com', 'USA', '2023-01-15'),
 (2, 'Oleg Smith', 'oleg.smith@example.com', 'USA', '2023-03-20'),
@@ -19,6 +27,19 @@ INSERT INTO ozSQL_AWS_RDS.users (user_id, name, email, country, signup_date) VAL
 (4, 'Alice Green', 'alice.green@example.com', 'Canada', '2023-04-05'),
 (5, 'Bob White', 'bob.white@example.com', 'UK', '2023-05-30'),
 (6, 'Eva Blue', 'eva.blue@example.com', 'UK', '2023-06-25');
+
+INSERT INTO ozSQL_AWS_RDS.users (user_id, name, email, country, signup_date) VALUES
+(8, 'John Doe', 'john.doe@example.com', 'USA', '2023-01-15'),
+(7, 'Oleg Smith', 'oleg.smith@example.com', 'USA', '2023-03-20')
+;
+
+INSERT INTO ozSQL_AWS_RDS.users2(user_id, name, email, country, signup_date) VALUES
+(1, 'Sarah Black', 'sarah.black@example.com', 'Australia', '2023-07-10'),
+(2, 'Oleg Smith', 'oleg.smith@example.com', 'USA', '2023-03-20'),
+(3, 'Liam Chen', 'liam.chen@example.com', 'New Zealand', '2023-08-12'),
+(4, 'Nina Patel', 'nina.patel@example.com', 'India', '2023-09-01'),
+(5, 'Bob White', 'bob.white@example.com', 'UK', '2023-05-30'),
+(6, 'Carlos Ruiz', 'carlos.ruiz@example.com', 'Spain', '2023-10-03');
 
 -- Create Orders Table
 DROP TABLE IF EXISTS ozSQL_AWS_RDS.orders;
@@ -48,6 +69,12 @@ CREATE TABLE ozSQL_AWS_RDS.products (
     name VARCHAR(100),
     category VARCHAR(50)
 );
+
+INSERT INTO ozSQL_AWS_RDS.products (product_id, name, category) VALUES
+(1001, 'Laptop', 'Electronics'),
+(1002, 'Smartphone', 'Electronics'),
+(1003, 'Tablet', 'Electronics');
+
 
 INSERT INTO ozSQL_AWS_RDS.products (product_id, name, category) VALUES
 (1001, 'Laptop', 'Electronics'),
