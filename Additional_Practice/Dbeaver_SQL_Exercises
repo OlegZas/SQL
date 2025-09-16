@@ -1,0 +1,55 @@
+-- 9/15/2025
+-- 1. Creating a dataset, tables, and data. 
+
+use ozSQL_AWS_RDS
+-- Create Users Table
+DROP TABLE IF EXISTS ozSQL_AWS_RDS.users;
+CREATE TABLE ozSQL_AWS_RDS.users (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    country VARCHAR(50),
+    signup_date DATE
+);
+
+INSERT INTO ozSQL_AWS_RDS.users (user_id, name, email, country, signup_date) VALUES
+(1, 'John Doe', 'john.doe@example.com', 'USA', '2023-01-15'),
+(2, 'Oleg Smith', 'oleg.smith@example.com', 'USA', '2023-03-20'),
+(3, 'Michael Brown', 'michael.brown@example.com', 'Canada', '2023-02-25'),
+(4, 'Alice Green', 'alice.green@example.com', 'Canada', '2023-04-05'),
+(5, 'Bob White', 'bob.white@example.com', 'UK', '2023-05-30'),
+(6, 'Eva Blue', 'eva.blue@example.com', 'UK', '2023-06-25');
+
+-- Create Orders Table
+DROP TABLE IF EXISTS ozSQL_AWS_RDS.orders;
+CREATE TABLE ozSQL_AWS_RDS.orders (
+    order_id INT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    purchase_date DATE,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (user_id) REFERENCES ozSQL_AWS_RDS.users(user_id)
+);
+
+INSERT INTO ozSQL_AWS_RDS.orders (order_id, user_id, product_id, purchase_date, amount) VALUES
+(101, 1, 1001, '2023-01-16', 150.00),
+(102, 1, 1002, '2023-01-18', 200.00),
+(103, 2, 1001, '2023-03-22', 150.00),
+(104, 3, 1003, '2023-02-28', 120.00),
+(105, 4, 1001, '2023-04-07', 180.00),
+(106, 5, 1002, '2023-05-31', 250.00),
+(107, 6, 1003, '2023-06-26', 300.00),
+(108, 3, 1002, '2023-02-25', 210.00);
+
+-- Create Products Table
+DROP TABLE IF EXISTS ozSQL_AWS_RDS.products;
+CREATE TABLE ozSQL_AWS_RDS.products (
+    product_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    category VARCHAR(50)
+);
+
+INSERT INTO ozSQL_AWS_RDS.products (product_id, name, category) VALUES
+(1001, 'Laptop', 'Electronics'),
+(1002, 'Smartphone', 'Electronics'),
+(1003, 'Tablet', 'Electronics');
