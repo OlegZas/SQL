@@ -45,3 +45,31 @@ HAVING MIN(day(purchase_date)) - day(U.signup_date ) < 2;
 SELECT SELECT DISTINCT U.name AS USER1, U.country, U.signup_date, U2.name AS USER2, U2.country, U2.signup_date
 FROM ozSQL_AWS_RDS.users U
 INNER JOIN ozSQL_AWS_RDS.users U2 ON U.user_id < U2.user_id AND U.country = U2.country  ; 
+
+
+--- ------------ 9/18/25
+-- 7. Which countries have the most users who made purchases?
+-- Return country and total spending.
+SELECT U.country, count(ORD.order_id) as `Most Orders`
+FROM ozSQL_AWS_RDS.users U
+INNER JOIN ozSQL_AWS_RDS.orders ORD ON U.user_id = ORD.user_id 
+GROUP BY U.country
+;
+
+-- 8. Which product generated the highest total revenue?
+SELECT P.name ,SUM(AMOUNT) AS HIGHEST_AMOUNT
+FROM ozSQL_AWS_RDS.orders O 
+INNER JOIN ozSQL_AWS_RDS.products P ON O.product_id = P.product_id 
+GROUP BY O.product_id 
+ORDER BY SUM(AMOUNT) DESC
+LIMIT 1
+;
+
+-- 9. List users who made more than one order on the same day.
+SELECT U.name, ORD.user_id  
+FROM ozSQL_AWS_RDS.users U
+INNER JOIN 
+(SELECT O.user_id 
+FROM ozSQL_AWS_RDS.orders O 
+GROUP BY O.user_id, O.purchase_date  
+HAVING COUNT(O.purchase_date )>1 ) ORD  ON U.user_id = ORD.user_id
