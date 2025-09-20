@@ -73,3 +73,25 @@ INNER JOIN
 FROM ozSQL_AWS_RDS.orders O 
 GROUP BY O.user_id, O.purchase_date  
 HAVING COUNT(O.purchase_date )>1 ) ORD  ON U.user_id = ORD.user_id
+
+-- *************** 9/19/25***************************************
+-- 10. Which users have duplicate records (same name and email) in the users table?
+-- List all duplicates.
+WITH rowsn AS (
+SELECT name,USER_ID, ROW_NUMBER ()OVER(PARTITION BY name order by user_id asc) as rn
+FROM ozSQL_AWS_RDS.users U
+)
+select USER_ID
+FROM rowsn
+WHERE rowsn.rn != 1
+
+-- 11. Delete all duplicate records from the users table,
+-- keeping only the one with the lowest user_id.
+DELETE FROM ozSQL_AWS_RDS.users U
+WHERE user_id in(select USER_ID
+FROM (SELECT USER_ID, ROW_NUMBER ()OVER(PARTITION BY name order by user_id asc) as rn
+FROM ozSQL_AWS_RDS.users U
+) rowsn
+WHERE rowsn.rn != 1)
+
+SELECT * FROM ozSQL_AWS_RDS.users U
