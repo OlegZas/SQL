@@ -1,7 +1,6 @@
-
 -- 9/16/25
---  SQL Exercises — ozSQL_AWS_RDS
---  Users, Orders & Products
+-- ✅ SQL Exercises — ozSQL_AWS_RDS
+-- 🔹 Users, Orders & Products
 
 -- 1. List all users who have never placed an order.
 select *
@@ -34,7 +33,8 @@ FROM ozSQL_AWS_RDS.users U
 INNER JOIN ozSQL_AWS_RDS.orders ORD ON U.user_id = ORD.user_id 
 INNER JOIN ozSQL_AWS_RDS.products P ON ORD.product_id = P.product_id AND P.product_id IN(1001, 1002)
 
--- 9/17/25
+
+
 -- 5. List users who placed their first order within 2 days of signing up.
 SELECT U.user_id, U.signup_date, min(ORD.purchase_date )
 FROM ozSQL_AWS_RDS.users U
@@ -45,7 +45,6 @@ HAVING MIN(day(purchase_date)) - day(U.signup_date ) < 2;
 SELECT SELECT DISTINCT U.name AS USER1, U.country, U.signup_date, U2.name AS USER2, U2.country, U2.signup_date
 FROM ozSQL_AWS_RDS.users U
 INNER JOIN ozSQL_AWS_RDS.users U2 ON U.user_id < U2.user_id AND U.country = U2.country  ; 
-
 
 --- ------------ 9/18/25
 -- 7. Which countries have the most users who made purchases?
@@ -95,3 +94,39 @@ FROM ozSQL_AWS_RDS.users U
 WHERE rowsn.rn != 1)
 
 SELECT * FROM ozSQL_AWS_RDS.users U
+
+-- //////////////// 9/22/25 ////////////////
+-- 12. Find users present in users table but not in users2.
+-- Match on email.
+SELECT *
+FROM ozSQL_AWS_RDS.users u
+left join ozSQL_AWS_RDS.users2 u2 ON u.USER_ID = u2.USER_ID AND u.name = u2.name
+WHERE u2.user_id is null 
+-- 13. Find users that exist in both users and users2, but have different countries.
+SELECT *
+FROM ozSQL_AWS_RDS.users u
+inner join ozSQL_AWS_RDS.users2 u2 ON u.USER_ID = u2.USER_ID AND u.name = u2.name AND u.country <> u2.country 
+
+
+-- 14. Insert users from users2 into users if their email does not already exist in users.
+
+-- 15. Identify users who made purchases of more than 200 in a single order.
+-- List their name, order ID, and amount.
+
+-- 16. Which users bought the same product more than once?
+-- List user name, product name.
+
+-- 17. List the number of users who signed up each month.
+-- Hint: Extract MONTH(signup_date) or use DATE_TRUNC() if supported.
+
+-- 18. List products that have never been ordered.
+
+-- 19. Update the email of all users in users
+-- whose email ends with @example.com to end with @ozsql.com instead.
+
+-- 20. Delete users from the users table if their email is not found in users2.
+
+-- 🧩 Bonus Challenge:
+-- 🔹 Combine business logic:
+-- “Which 3 countries have the highest total order value per user
+-- (average order value per user in that country)?”
