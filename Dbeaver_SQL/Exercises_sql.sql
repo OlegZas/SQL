@@ -108,13 +108,29 @@ FROM ozSQL_AWS_RDS.users u
 inner join ozSQL_AWS_RDS.users2 u2 ON u.USER_ID = u2.USER_ID AND u.name = u2.name AND u.country <> u2.country 
 
 
+-- 9/23/25 -------------
 -- 14. Insert users from users2 into users if their email does not already exist in users.
+INSERT INTO ozSQL_AWS_RDS.users2
+SELECT u.*
+FROM ozSQL_AWS_RDS.users u
+left join ozSQL_AWS_RDS.users2 u2 ON u.email = u2.email
+where u2.email is null 
 
+select * from ozSQL_AWS_RDS.users2
 -- 15. Identify users who made purchases of more than 200 in a single order.
 -- List their name, order ID, and amount.
+SELECT * 
+FROM ozSQL_AWS_RDS.users u
+INNER JOIN ozSQL_AWS_RDS.orders o on u.USER_ID = o.USER_ID and amount > 200
 
 -- 16. Which users bought the same product more than once?
 -- List user name, product name.
+SELECT * 
+FROM ozSQL_AWS_RDS.users u
+INNER JOIN (SELECT user_id
+FROM ozSQL_AWS_RDS.orders o 
+GROUP BY user_id, product_id
+HAVING count(product_id) > 1) o on u.USER_ID = o.USER_ID
 
 -- 17. List the number of users who signed up each month.
 -- Hint: Extract MONTH(signup_date) or use DATE_TRUNC() if supported.
@@ -130,3 +146,4 @@ inner join ozSQL_AWS_RDS.users2 u2 ON u.USER_ID = u2.USER_ID AND u.name = u2.nam
 -- 🔹 Combine business logic:
 -- “Which 3 countries have the highest total order value per user
 -- (average order value per user in that country)?”
+
