@@ -132,10 +132,18 @@ FROM ozSQL_AWS_RDS.orders o
 GROUP BY user_id, product_id
 HAVING count(product_id) > 1) o on u.USER_ID = o.USER_ID
 
+-- 9/25/25 switched to MySQL Workbench connected to CLoudSQL (gcp) instance. 
 -- 17. List the number of users who signed up each month.
--- Hint: Extract MONTH(signup_date) or use DATE_TRUNC() if supported.
 
+select month(signup_date) as Month, Count(*) as NumberOfUsers
+from users
+group by month(signup_date)
+;
 -- 18. List products that have never been ordered.
+select * 
+from products p
+left join orders o on p.product_id = o.product_id
+where o.order_id is null;
 
 -- 19. Update the email of all users in users
 -- whose email ends with @example.com to end with @ozsql.com instead.
@@ -146,4 +154,5 @@ HAVING count(product_id) > 1) o on u.USER_ID = o.USER_ID
 -- 🔹 Combine business logic:
 -- “Which 3 countries have the highest total order value per user
 -- (average order value per user in that country)?”
+
 
