@@ -147,12 +147,17 @@ where o.order_id is null;
 
 -- 19. Update the email of all users in users
 -- whose email ends with @example.com to end with @ozsql.com instead.
+update users
+set email = REPLACE(email, '@example.com','@ozsql.com')
+where email like '%@example.com';
 
+select * from users;
 -- 20. Delete users from the users table if their email is not found in users2.
+DELETE FROM users 
+WHERE EMAIL NOT IN  ( 
+	SELECT EMAIL
+    FROM users2 );
+    
 
--- 🧩 Bonus Challenge:
--- 🔹 Combine business logic:
--- “Which 3 countries have the highest total order value per user
--- (average order value per user in that country)?”
 
 
