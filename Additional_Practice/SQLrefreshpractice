@@ -1,0 +1,26 @@
+# SQL refresh practice 
+
+#Show the countries in Europe with a per capita GDP greater than 'United Kingdom'.
+select name from world 
+where gdp/population > (select gdp/population from world where name = 'United Kingdom') 
+and continent = 'Europe'
+
+#List the name and continent of countries in the continents containing either Argentina or Australia. Order by name of the country.
+select name, continent 
+from world 
+where continent in(select continent 
+from world 
+where name in('Argentina','Australia'))
+order by name
+
+#Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.
+Select name, concat(round(100*(population/(select population from world where name = 'Germany')),0),'%') as percentage 
+from world 
+where continent = 'Europe'
+
+#6. Bigger than every country in Europe
+select name 
+from world 
+where gdp > all(select gdp
+from world 
+where continent = 'Europe' and gdp is not NULL) and gdp is not NULL
