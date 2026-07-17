@@ -59,3 +59,8 @@ select continent, count(1)
 from world 
 where population >= 10000000
 group by continent 
+
+select continent
+from world 
+group by continent 
+having sum(population) >= 100000000
