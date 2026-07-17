@@ -64,3 +64,9 @@ select continent
 from world 
 group by continent 
 having sum(population) >= 100000000
+
+#Instead show the name of all players who scored a goal against Germany.
+SELECT distinct(player)
+  FROM game 
+JOIN goal ON matchid = id and teamid <> 'GER'
+    WHERE (team1='GER' or team2='GER')
