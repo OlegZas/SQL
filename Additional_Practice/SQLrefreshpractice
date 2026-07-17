@@ -54,3 +54,8 @@ WHERE w.population > (SELECT 3 * MAX(w2.population)
                       WHERE w2.continent = w.continent AND
                             w2.name <> w.name
                      );
+
+select continent, count(1)
+from world 
+where population >= 10000000
+group by continent 
