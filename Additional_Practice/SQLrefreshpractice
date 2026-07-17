@@ -70,3 +70,9 @@ SELECT distinct(player)
   FROM game 
 JOIN goal ON matchid = id and teamid <> 'GER'
     WHERE (team1='GER' or team2='GER')
+
+#Show the stadium and the number of goals scored in each stadium.
+SELECT STADIUM,SUM(1)
+FROM game G
+JOIN goal G1 ON G1.matchid = G.id
+GROUP BY STADIUM
