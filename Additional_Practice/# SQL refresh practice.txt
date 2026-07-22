@@ -1,0 +1,43 @@
+# SQL refresh practice 
+
+#Show the countries in Europe with a per capita GDP greater than 'United Kingdom'.
+select name from world 
+where gdp/population > (select gdp/population from world where name = 'United Kingdom') 
+and continent = 'Europe'
+
+#List the name and continent of countries in the continents containing either Argentina or Australia. Order by name of the country.
+select name, continent 
+from world 
+where continent in(select continent 
+from world 
+where name in('Argentina','Australia'))
+order by name
+
+#Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.
+Select name, concat(round(100*(population/(select population from world where name = 'Germany')),0),'%') as percentage 
+from world 
+where continent = 'Europe'
+
+#6. Bigger than every country in Europe
+select name 
+from world 
+where gdp > all(select gdp
+from world 
+where continent = 'Europe' and gdp is not NULL) and gdp is not NULL
+
+#9. Harrison Ford as a supporting actor
+List the films where 'Harrison Ford' has appeared - but not in the starring role. [Note: the ord field of casting gives the position of the actor. If ord=1 then this actor is in the starring role]
+
+select m.title
+from movie m 
+inner join casting j on j.movieid = m.id and j.ord <> 1
+inner join actor a on a.id= j.actorid and name ='Harrison Ford'
+
+#10. Lead actors in 1962 movies
+List the films together with the leading star for all 1962 films.
+
+select distinct m.title,a.name
+from movie m 
+inner join casting j on j.movieid = m.id and j.ord = 1
+inner join actor a on a.id= j.actorid 
+where m.yr= 1962 and j.ord = 1
